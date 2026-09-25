@@ -1,1 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <meta name="description"
+          content="Find your next job opportunity. Search jobs by title, skills, company and location.">
+
+    <title>JobPortal - Find Your Next Opportunity</title>
+
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="container nav-container">
+
+        <a href="./" class="logo">
+            Job<span>Portal</span>
+        </a>
+
+        <nav class="main-nav">
+            <a href="jobs.html">Jobs</a>
+            <a href="companies.html">Companies</a>
+            <a href="categories.html">Categories</a>
+            <a href="locations.html">Locations</a>
+        </nav>
+
+        <a href="jobs.html" class="browse-btn">
+            Browse Jobs
+        </a>
+
+    </div>
+</header>
+
+
+<main>
+
+<!-- HERO -->
+<section class="hero">
+
+    <div class="container hero-container">
+
+        <div class="hero-label">
+            FIND YOUR NEXT OPPORTUNITY
+        </div>
+
+        <h1>
+            Find a job that
+            <br>
+            <span>fits your future.</span>
+        </h1>
+
+        <p class="hero-description">
+            Discover jobs from companies hiring now.
+            Search by job title, skill, company or location.
+        </p>
+
+
+        <form class="search-form" id="jobSearch">
+
+            <div class="search-input">
+                <span>⌕</span>
+                <input
+                    type="text"
+                    id="keyword"
+                    placeholder="Job title, skill or company"
+                >
+            </div>
+
+            <div class="search-input">
+                <span>⌖</span>
+                <input
+                    type="text"
+                    id="location"
+                    placeholder="Location"
+                >
+            </div>
+
+            <button type="submit">
+                Search Jobs →
+            </button>
+
+        </form>
+
+
+        <div class="popular-searches">
+
+            <strong>Popular:</strong>
+
+            <a href="search.html?q=software engineer">
+                Software Engineer
+            </a>
+
+            <a href="search.html?q=python">
+                Python
+            </a>
+
+            <a href="search.html?q=data analyst">
+                Data Analyst
+            </a>
+
+            <a href="search.html?q=ai">
+                AI / ML
+            </a>
+
+            <a href="search.html?q=remote">
+                Remote
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FEATURED JOBS -->
+<section class="section">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <div>
+                <div class="section-label">
+                    FEATURED
+                </div>
+
+                <h2>
+                    Featured opportunities
+                </h2>
+            </div>
+
+            <a href="jobs.html?featured=true">
+                View all →
+            </a>
+
+        </div>
+
+
+        <div id="featuredJobs" class="featured-jobs"></div>
+
+    </div>
+
+</section>
+
+
+<!-- LATEST JOBS -->
+<section class="section latest-section">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <div>
+                <div class="section-label">
+                    JUST ADDED
+                </div>
+
+                <h2>
+                    Latest jobs
+                </h2>
+            </div>
+
+            <a href="jobs.html">
+                Explore all jobs →
+            </a>
+
+        </div>
+
+
+        <div id="latestJobs" class="job-grid"></div>
+
+    </div>
+
+</section>
+
+
+<!-- CATEGORIES -->
+<section class="section categories-section">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <div>
+                <div class="section-label">
+                    EXPLORE
+                </div>
+
+                <h2>
+                    Browse by category
+                </h2>
+            </div>
+
+        </div>
+
+
+        <div id="categories" class="category-grid"></div>
+
+    </div>
+
+</section>
+
+
+<!-- LOCATIONS -->
+<section class="section">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <div>
+                <div class="section-label">
+                    WHERE YOU CAN WORK
+                </div>
+
+                <h2>
+                    Popular locations
+                </h2>
+            </div>
+
+            <a href="locations.html">
+                All locations →
+            </a>
+
+        </div>
+
+
+        <div id="locations" class="location-grid"></div>
+
+    </div>
+
+</section>
+
+
+<!-- CTA -->
+<section class="cta-section">
+
+    <div class="container cta-container">
+
+        <div>
+
+            <div class="section-label">
+                START EXPLORING
+            </div>
+
+            <h2>
+                Your next opportunity
+                could be one search away.
+            </h2>
+
+        </div>
+
+        <a href="jobs.html" class="cta-btn">
+            Find Jobs →
+        </a>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<footer class="footer">
+
+    <div class="container footer-container">
+
+        <div>
+
+            <a href="./" class="logo footer-logo">
+                Job<span>Portal</span>
+            </a>
+
+            <p>
+                Simple and focused job discovery.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h3>Explore</h3>
+
+            <a href="jobs.html">Jobs</a>
+            <a href="companies.html">Companies</a>
+            <a href="categories.html">Categories</a>
+            <a href="locations.html">Locations</a>
+
+        </div>
+
+
+        <div>
+
+            <h3>Job Types</h3>
+
+            <a href="jobs.html?type=full-time">
+                Full Time
+            </a>
+
+            <a href="jobs.html?type=internship">
+                Internships
+            </a>
+
+            <a href="jobs.html?mode=remote">
+                Remote
+            </a>
+
+            <a href="jobs.html?experience=fresher">
+                Freshers
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        © 2026 JobPortal. All rights reserved.
+
+    </div>
+
+</footer>
+
+
+<script src="assets/js/app.js"></script>
+
+</body>
+</html>
