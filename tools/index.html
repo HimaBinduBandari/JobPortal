@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Excel to JSON | JobPortal</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header class="site-header">
+
+    <div class="container header-container">
+
+        <a href="../index.html" class="logo">
+            Job<span>Portal</span>
+        </a>
+
+        <a href="../jobs.html" class="back-link">
+            ← Back to Jobs
+        </a>
+
+    </div>
+
+</header>
+
+
+<main class="page">
+
+    <div class="container">
+
+        <div class="page-heading">
+
+            <div class="eyebrow">
+                JOBPORTAL DATA TOOL
+            </div>
+
+            <h1>
+                Excel to JSON
+            </h1>
+
+            <p>
+                Upload your Excel job data and convert it
+                into <strong>jobs.json</strong>.
+            </p>
+
+        </div>
+
+
+        <!-- UPLOAD CARD -->
+
+        <section class="upload-card">
+
+            <div class="upload-icon">
+                ↑
+            </div>
+
+            <h2>
+                Upload Excel File
+            </h2>
+
+            <p>
+                Upload the Excel file containing your job data.
+            </p>
+
+            <input
+                type="file"
+                id="excelFile"
+                accept=".xlsx,.xls"
+            >
+
+            <button
+                type="button"
+                id="chooseFileButton"
+                class="upload-button"
+            >
+                Choose Excel File
+            </button>
+
+            <div
+                id="fileName"
+                class="file-name"
+            >
+                No file selected
+            </div>
+
+        </section>
+
+
+        <!-- STATUS -->
+
+        <div
+            id="status"
+            class="status"
+        ></div>
+
+
+        <!-- PREVIEW -->
+
+        <section
+            id="previewSection"
+            class="preview-section"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <div class="eyebrow">
+                        PREVIEW
+                    </div>
+
+                    <h2>
+                        Imported Jobs
+                    </h2>
+
+                </div>
+
+                <div
+                    id="recordCount"
+                    class="record-count"
+                >
+                    0 jobs
+                </div>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead id="previewHead"></thead>
+
+                    <tbody id="previewBody"></tbody>
+
+                </table>
+
+            </div>
+
+
+            <div class="download-area">
+
+                <div>
+
+                    <strong>
+                        Download your JSON
+                    </strong>
+
+                    <p>
+                        The converted file will be downloaded
+                        to your computer.
+                    </p>
+
+                </div>
+
+                <button
+                    type="button"
+                    id="downloadButton"
+                    class="download-button"
+                    disabled
+                >
+                    Download jobs.json ↓
+                </button>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+<footer>
+
+    © 2026 JobPortal
+
+</footer>
+
+
+<!--
+    SheetJS
+    This library reads Excel files in the browser.
+-->
+<script
+    src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"
+    onerror="window.xlsxLibraryError = true;"
+></script>
+
+<script src="app.js"></script>
+
+</body>
+
+</html>

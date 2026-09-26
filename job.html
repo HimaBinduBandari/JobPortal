@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        id="metaDescription"
+        content="View job details and apply for this opportunity."
+    >
+
+    <title id="pageTitle">
+        Job Details | JobPortal
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="assets/css/style.css"
+    >
+
+    <style>
+
+        /* =========================================
+           JOB DETAIL PAGE
+        ========================================= */
+
+        .job-detail-page {
+            padding: 60px 0 90px;
+        }
+
+
+        /* =========================================
+           JOB HERO
+        ========================================= */
+
+        .job-detail-hero {
+
+            background: var(--white);
+
+            border: 1px solid #e7e4dc;
+
+            border-radius: 16px;
+
+            padding: 35px;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        .job-detail-top {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: flex-start;
+
+            gap: 30px;
+
+        }
+
+
+        .job-company {
+
+            display: flex;
+
+            gap: 18px;
+
+            align-items: flex-start;
+
+        }
+
+
+        .detail-company-logo {
+
+            width: 72px;
+
+            height: 72px;
+
+            border-radius: 12px;
+
+            object-fit: contain;
+
+            background: #f5f3ed;
+
+            padding: 10px;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .job-detail-title {
+
+            margin: 0 0 8px;
+
+            font-size: 32px;
+
+            line-height: 1.25;
+
+        }
+
+
+        .detail-company-name {
+
+            color: var(--muted);
+
+            font-size: 15px;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .detail-meta {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 8px;
+
+        }
+
+
+        .detail-meta span {
+
+            background: #f5f3ed;
+
+            padding: 6px 10px;
+
+            border-radius: 6px;
+
+            font-size: 12px;
+
+            color: #555;
+
+        }
+
+
+        .featured-badge {
+
+            display: inline-block;
+
+            background: #f3ead0;
+
+            color: #725b18;
+
+            padding: 5px 9px;
+
+            border-radius: 5px;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            margin-bottom: 10px;
+
+            letter-spacing: 0.3px;
+
+        }
+
+
+        .apply-btn {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: var(--green);
+
+            color: #fff;
+
+            text-decoration: none;
+
+            padding: 14px 25px;
+
+            border-radius: 8px;
+
+            font-weight: 700;
+
+            white-space: nowrap;
+
+            transition: 0.2s ease;
+
+        }
+
+
+        .apply-btn:hover {
+
+            background: var(--green-dark);
+
+            transform: translateY(-1px);
+
+        }
+
+
+        /* =========================================
+           CONTENT LAYOUT
+        ========================================= */
+
+        .job-detail-layout {
+
+            display: grid;
+
+            grid-template-columns: minmax(0, 1fr) 310px;
+
+            gap: 30px;
+
+            align-items: start;
+
+        }
+
+
+        .job-detail-content {
+
+            background: var(--white);
+
+            border: 1px solid #e7e4dc;
+
+            border-radius: 14px;
+
+            padding: 30px;
+
+        }
+
+
+        .job-section {
+
+            margin-bottom: 35px;
+
+        }
+
+
+        .job-section:last-child {
+
+            margin-bottom: 0;
+
+        }
+
+
+        .job-section h2 {
+
+            font-size: 21px;
+
+            margin: 0 0 15px;
+
+        }
+
+
+        .job-section p {
+
+            color: #555;
+
+            line-height: 1.75;
+
+            font-size: 15px;
+
+            margin: 0;
+
+            white-space: pre-line;
+
+        }
+
+
+        .requirements-list {
+
+            margin: 0;
+
+            padding-left: 20px;
+
+            color: #555;
+
+            line-height: 1.8;
+
+            font-size: 15px;
+
+        }
+
+
+        .skills-list {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 8px;
+
+        }
+
+
+        .skill-tag {
+
+            background: #f5f3ed;
+
+            border: 1px solid #e7e4dc;
+
+            padding: 7px 11px;
+
+            border-radius: 7px;
+
+            font-size: 13px;
+
+        }
+
+
+        /* =========================================
+           SIDEBAR
+        ========================================= */
+
+        .job-sidebar {
+
+            position: sticky;
+
+            top: 90px;
+
+        }
+
+
+        .overview-card {
+
+            background: var(--white);
+
+            border: 1px solid #e7e4dc;
+
+            border-radius: 14px;
+
+            padding: 25px;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .overview-card h3 {
+
+            margin: 0 0 20px;
+
+            font-size: 18px;
+
+        }
+
+
+        .overview-item {
+
+            padding: 13px 0;
+
+            border-bottom: 1px solid #eeeae2;
+
+        }
+
+
+        .overview-item:last-child {
+
+            border-bottom: none;
+
+        }
+
+
+        .overview-label {
+
+            display: block;
+
+            color: var(--muted);
+
+            font-size: 12px;
+
+            margin-bottom: 4px;
+
+        }
+
+
+        .overview-value {
+
+            display: block;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+        }
+
+
+        .sidebar-apply {
+
+            width: 100%;
+
+            text-align: center;
+
+        }
+
+
+        /* =========================================
+           COMPANY CARD
+        ========================================= */
+
+        .company-card {
+
+            background: var(--white);
+
+            border: 1px solid #e7e4dc;
+
+            border-radius: 14px;
+
+            padding: 25px;
+
+        }
+
+
+        .company-card h3 {
+
+            margin: 0 0 12px;
+
+            font-size: 18px;
+
+        }
+
+
+        .company-card p {
+
+            color: var(--muted);
+
+            font-size: 14px;
+
+            line-height: 1.65;
+
+            margin: 0;
+
+        }
+
+
+        /* =========================================
+           BOTTOM APPLY
+        ========================================= */
+
+        .bottom-apply {
+
+            margin-top: 30px;
+
+            padding: 25px;
+
+            background: #f5f3ed;
+
+            border-radius: 12px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 20px;
+
+        }
+
+
+        .bottom-apply h3 {
+
+            margin: 0 0 5px;
+
+        }
+
+
+        .bottom-apply p {
+
+            margin: 0;
+
+            color: var(--muted);
+
+            font-size: 14px;
+
+        }
+
+
+        /* =========================================
+           NOT FOUND
+        ========================================= */
+
+        .job-not-found {
+
+            padding: 80px 25px;
+
+            text-align: center;
+
+        }
+
+
+        .job-not-found h1 {
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .job-not-found p {
+
+            color: var(--muted);
+
+            margin-bottom: 25px;
+
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 900px) {
+
+            .job-detail-layout {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .job-sidebar {
+
+                position: static;
+
+            }
+
+        }
+
+
+        @media (max-width: 650px) {
+
+            .job-detail-page {
+
+                padding: 35px 0 60px;
+
+            }
+
+
+            .job-detail-hero {
+
+                padding: 22px;
+
+            }
+
+
+            .job-detail-top {
+
+                flex-direction: column;
+
+            }
+
+
+            .job-company {
+
+                gap: 12px;
+
+            }
+
+
+            .detail-company-logo {
+
+                width: 55px;
+
+                height: 55px;
+
+            }
+
+
+            .job-detail-title {
+
+                font-size: 25px;
+
+            }
+
+
+            .job-detail-content {
+
+                padding: 22px;
+
+            }
+
+
+            .bottom-apply {
+
+                align-items: flex-start;
+
+                flex-direction: column;
+
+            }
+
+
+            .bottom-apply .apply-btn {
+
+                width: 100%;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     HEADER
+========================================= -->
+
+<header class="site-header">
+
+    <div class="container nav-container">
+
+        <a href="./" class="logo">
+            Job<span>Portal</span>
+        </a>
+
+        <nav class="main-nav">
+
+            <a href="jobs.html">
+                Jobs
+            </a>
+
+            <a href="companies.html">
+                Companies
+            </a>
+
+            <a href="categories.html">
+                Categories
+            </a>
+
+            <a href="locations.html">
+                Locations
+            </a>
+
+        </nav>
+
+        <a
+            href="jobs.html"
+            class="browse-btn"
+        >
+            Browse Jobs
+        </a>
+
+    </div>
+
+</header>
+
+
+<!-- =========================================
+     MAIN
+========================================= -->
+
+<main>
+
+    <section class="job-detail-page">
+
+        <div class="container">
+
+            <div id="jobContainer">
+
+                <!-- Job loaded by JavaScript -->
+
+                <div class="job-not-found">
+
+                    <h1>
+                        Loading job...
+                    </h1>
+
+                    <p>
+                        Please wait while we load the job details.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<footer class="footer">
+
+    <div class="container footer-container">
+
+
+        <div>
+
+            <a
+                href="./"
+                class="logo footer-logo"
+            >
+                Job<span>Portal</span>
+            </a>
+
+            <p>
+                Simple and focused job discovery.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h3>
+                Explore
+            </h3>
+
+            <a href="jobs.html">
+                Jobs
+            </a>
+
+            <a href="companies.html">
+                Companies
+            </a>
+
+            <a href="categories.html">
+                Categories
+            </a>
+
+            <a href="locations.html">
+                Locations
+            </a>
+
+        </div>
+
+
+        <div>
+
+            <h3>
+                Job Types
+            </h3>
+
+            <a href="jobs.html?type=full-time">
+                Full Time
+            </a>
+
+            <a href="jobs.html?type=internship">
+                Internships
+            </a>
+
+            <a href="jobs.html?mode=remote">
+                Remote
+            </a>
+
+            <a href="jobs.html?experience=fresher">
+                Freshers
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        © 2026 JobPortal. All rights reserved.
+
+    </div>
+
+</footer>
+
+
+<script src="assets/js/job.js"></script>
+
+</body>
+
+</html>

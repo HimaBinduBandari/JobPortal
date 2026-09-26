@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Search Jobs - JobPortal</title>
+
+    <meta
+        name="description"
+        content="Search and find the latest job opportunities on JobPortal."
+    >
+
+    <link
+        rel="stylesheet"
+        href="assets/css/style.css"
+    >
+
+    <style>
+
+        /* ================================
+           SEARCH PAGE
+        ================================= */
+
+        .search-page {
+            padding: 60px 0 80px;
+            background: #f8faf8;
+            min-height: 600px;
+        }
+
+        .search-header {
+            margin-bottom: 30px;
+        }
+
+        .search-header h1 {
+            margin-bottom: 10px;
+        }
+
+        .search-header p {
+            color: #666;
+            margin: 0;
+        }
+
+        /* Search Box */
+
+        .search-box {
+            background: #ffffff;
+            border: 1px solid #e5e8e5;
+            border-radius: 14px;
+            padding: 22px;
+            margin-bottom: 30px;
+
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .search-input {
+            flex: 1;
+            height: 48px;
+            padding: 0 16px;
+
+            border: 1px solid #dfe4df;
+            border-radius: 8px;
+
+            font-size: 15px;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: var(--green-dark);
+        }
+
+        .search-submit {
+            height: 48px;
+            padding: 0 24px;
+
+            border: none;
+            border-radius: 8px;
+
+            background: var(--green-dark);
+            color: #ffffff;
+
+            font-size: 15px;
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+        .search-submit:hover {
+            opacity: 0.9;
+        }
+
+        /* Results */
+
+        .search-results-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 20px;
+        }
+
+        .search-results-header h2 {
+            margin: 0;
+            font-size: 22px;
+        }
+
+        .results-count {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Job List */
+
+        .search-results {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .search-job-card {
+            background: #ffffff;
+
+            border: 1px solid #e5e8e5;
+            border-radius: 12px;
+
+            padding: 22px;
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .search-job-card:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 8px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        .search-job-top {
+            display: flex;
+            gap: 16px;
+        }
+
+        .search-company-logo {
+            width: 58px;
+            height: 58px;
+
+            min-width: 58px;
+
+            border-radius: 10px;
+
+            object-fit: contain;
+
+            border: 1px solid #e5e8e5;
+            background: #ffffff;
+        }
+
+        .search-company-logo-letter {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 26px;
+            font-weight: 700;
+
+            color: var(--green-dark);
+            background: #eef3ed;
+        }
+
+        .search-job-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .search-job-title {
+            margin: 0 0 5px;
+
+            font-size: 19px;
+            line-height: 1.35;
+        }
+
+        .search-job-title a {
+            color: #222;
+            text-decoration: none;
+        }
+
+        .search-job-title a:hover {
+            color: var(--green-dark);
+        }
+
+        .search-company {
+            margin-bottom: 10px;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            color: #555;
+        }
+
+        .search-job-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 16px;
+
+            color: #666;
+            font-size: 13px;
+        }
+
+        .search-job-description {
+            margin: 14px 0 0;
+
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .search-job-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-top: 18px;
+            padding-top: 15px;
+
+            border-top: 1px solid #eeeeee;
+        }
+
+        .search-job-date {
+            font-size: 13px;
+            color: #777;
+        }
+
+        .search-view-btn {
+            display: inline-flex;
+            align-items: center;
+
+            padding: 9px 16px;
+
+            border-radius: 7px;
+
+            background: var(--green-dark);
+            color: #ffffff;
+
+            text-decoration: none;
+
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .search-view-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Featured */
+
+        .search-featured {
+            display: inline-block;
+
+            margin-bottom: 8px;
+            padding: 4px 8px;
+
+            border-radius: 5px;
+
+            background: #eef3ed;
+            color: var(--green-dark);
+
+            font-size: 11px;
+            font-weight: 700;
+
+            text-transform: uppercase;
+        }
+
+        /* No Results */
+
+        .no-search-results {
+            background: #ffffff;
+
+            border: 1px solid #e5e8e5;
+            border-radius: 12px;
+
+            padding: 60px 30px;
+
+            text-align: center;
+        }
+
+        .no-search-results h2 {
+            margin-bottom: 10px;
+        }
+
+        .no-search-results p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .browse-all-btn {
+            display: inline-block;
+
+            padding: 11px 20px;
+
+            background: var(--green-dark);
+            color: #ffffff;
+
+            border-radius: 7px;
+
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        /* Mobile */
+
+        @media (max-width: 700px) {
+
+            .search-page {
+                padding: 40px 0 60px;
+            }
+
+            .search-box {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-submit {
+                width: 100%;
+            }
+
+            .search-job-top {
+                align-items: flex-start;
+            }
+
+            .search-company-logo {
+                width: 48px;
+                height: 48px;
+                min-width: 48px;
+            }
+
+            .search-job-title {
+                font-size: 17px;
+            }
+
+            .search-job-footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .search-view-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================================
+     HEADER
+================================= -->
+
+<header class="site-header">
+
+    <div class="container nav-container">
+
+        <a href="./" class="logo">
+            Job<span>Portal</span>
+        </a>
+
+        <nav class="main-nav">
+
+            <a href="jobs.html">
+                Jobs
+            </a>
+
+            <a href="companies.html">
+                Companies
+            </a>
+
+            <a href="categories.html">
+                Categories
+            </a>
+
+            <a href="locations.html">
+                Locations
+            </a>
+
+        </nav>
+
+        <a href="jobs.html" class="browse-btn">
+            Browse Jobs
+        </a>
+
+    </div>
+
+</header>
+
+
+<!-- ================================
+     SEARCH PAGE
+================================= -->
+
+<main class="search-page">
+
+    <div class="container">
+
+        <div class="search-header">
+
+            <h1>
+                Search Jobs
+            </h1>
+
+            <p>
+                Find jobs by title, company, skills, category or location.
+            </p>
+
+        </div>
+
+
+        <!-- Search Form -->
+
+        <form
+            id="searchForm"
+            class="search-box"
+        >
+
+            <input
+                type="text"
+                id="searchKeyword"
+                class="search-input"
+                placeholder="Search jobs, skills, companies..."
+                autocomplete="off"
+            >
+
+            <button
+                type="submit"
+                class="search-submit"
+            >
+                Search Jobs
+            </button>
+
+        </form>
+
+
+        <!-- Results Header -->
+
+        <div class="search-results-header">
+
+            <h2 id="searchTitle">
+                Latest Jobs
+            </h2>
+
+            <span
+                id="resultsCount"
+                class="results-count"
+            >
+                Loading...
+            </span>
+
+        </div>
+
+
+        <!-- Results -->
+
+        <div
+            id="searchResults"
+            class="search-results"
+        ></div>
+
+    </div>
+
+</main>
+
+
+<!-- ================================
+     FOOTER
+================================= -->
+
+<footer class="footer">
+
+    <div class="container footer-container">
+
+        <div>
+
+            <a href="./" class="logo footer-logo">
+                Job<span>Portal</span>
+            </a>
+
+            <p>
+                Simple and focused job discovery.
+            </p>
+
+        </div>
+
+        <div>
+
+            <h3>
+                Explore
+            </h3>
+
+            <a href="jobs.html">
+                Jobs
+            </a>
+
+            <a href="companies.html">
+                Companies
+            </a>
+
+            <a href="categories.html">
+                Categories
+            </a>
+
+            <a href="locations.html">
+                Locations
+            </a>
+
+        </div>
+
+        <div>
+
+            <h3>
+                Job Types
+            </h3>
+
+            <a href="jobs.html?type=full-time">
+                Full Time
+            </a>
+
+            <a href="jobs.html?type=internship">
+                Internships
+            </a>
+
+            <a href="jobs.html?mode=remote">
+                Remote
+            </a>
+
+            <a href="jobs.html?experience=fresher">
+                Freshers
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        © 2026 JobPortal. All rights reserved.
+
+    </div>
+
+</footer>
+
+
+<script src="assets/js/search.js"></script>
+
+</body>
+
+</html>
