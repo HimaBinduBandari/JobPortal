@@ -1,0 +1,448 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Find jobs across India by state and city."
+    >
+
+    <title>Jobs by Location | JobPortal</title>
+
+
+    <!-- Main JobPortal CSS -->
+
+    <link
+        rel="stylesheet"
+        href="assets/css/style.css"
+    >
+
+
+    <!-- Locations CSS -->
+
+    <link
+        rel="stylesheet"
+        href="assets/css/locations.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     HEADER
+========================================= -->
+
+<header class="site-header">
+
+    <div class="container nav-container">
+
+        <a
+            href="./"
+            class="logo"
+        >
+            Job<span>Portal</span>
+        </a>
+
+
+        <nav class="main-nav">
+
+            <a href="jobs.html">
+                Jobs
+            </a>
+
+            <a href="companies.html">
+                Companies
+            </a>
+
+            <a href="categories.html">
+                Categories
+            </a>
+
+            <a
+                href="locations.html"
+                class="active"
+            >
+                Locations
+            </a>
+
+        </nav>
+
+
+        <a
+            href="jobs.html"
+            class="browse-btn"
+        >
+            Browse Jobs
+        </a>
+
+    </div>
+
+</header>
+
+
+<main>
+
+
+<!-- =========================================
+     HERO
+========================================= -->
+
+<section class="locations-hero">
+
+    <div class="container">
+
+        <div class="section-label">
+            EXPLORE OPPORTUNITIES
+        </div>
+
+
+        <h1>
+            Find jobs across
+            <span>India.</span>
+        </h1>
+
+
+        <p>
+            Explore job opportunities by state and city.
+            Click a state on the map to discover available jobs.
+        </p>
+
+
+        <div class="location-search">
+
+            <span>⌕</span>
+
+            <input
+                type="text"
+                id="locationSearch"
+                placeholder="Search city or state..."
+                autocomplete="off"
+            >
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     MAP SECTION
+========================================= -->
+
+<section class="section map-section">
+
+    <div class="container">
+
+
+        <div class="section-header">
+
+            <div>
+
+                <div class="section-label">
+                    JOBS ACROSS INDIA
+                </div>
+
+                <h2>
+                    Explore by state
+                </h2>
+
+            </div>
+
+
+            <div
+                id="totalJobs"
+                class="map-job-count"
+            >
+                Loading jobs...
+            </div>
+
+        </div>
+
+
+
+        <div class="map-layout">
+
+
+            <!-- =============================
+                 INDIA MAP
+            ============================== -->
+
+            <div class="india-map-card">
+
+                <div
+                    id="indiaMap"
+                    class="india-map"
+                >
+
+                    <div class="map-loading">
+                        Loading India map...
+                    </div>
+
+                </div>
+
+
+                <!-- Selected State -->
+
+                <div
+                    id="selectedState"
+                    class="selected-state"
+                >
+
+                    <span>
+                        Click a state to view jobs
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =============================
+                 POPULAR LOCATIONS
+            ============================== -->
+
+            <aside class="popular-locations">
+
+                <div class="popular-heading">
+
+                    <div class="section-label">
+                        POPULAR
+                    </div>
+
+                    <h3>
+                        Top locations
+                    </h3>
+
+                </div>
+
+
+                <div
+                    id="popularLocations"
+                    class="popular-location-list"
+                >
+
+                    Loading...
+
+                </div>
+
+            </aside>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     ALL STATES
+========================================= -->
+
+<section class="section states-section">
+
+    <div class="container">
+
+
+        <div class="section-header">
+
+            <div>
+
+                <div class="section-label">
+                    ALL LOCATIONS
+                </div>
+
+                <h2>
+                    Browse by state
+                </h2>
+
+            </div>
+
+
+            <div
+                id="stateCount"
+                class="state-count"
+            >
+                0 states
+            </div>
+
+        </div>
+
+
+        <div
+            id="stateList"
+            class="state-list"
+        >
+
+            <div class="locations-loading">
+                Loading locations...
+            </div>
+
+        </div>
+
+
+        <div
+            id="noLocations"
+            class="no-locations"
+        >
+
+            No matching locations found.
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     CTA
+========================================= -->
+
+<section class="cta-section">
+
+    <div class="container cta-container">
+
+        <div>
+
+            <div class="section-label">
+                START YOUR SEARCH
+            </div>
+
+            <h2>
+                Find your next opportunity
+                anywhere in India.
+            </h2>
+
+        </div>
+
+
+        <a
+            href="jobs.html"
+            class="cta-btn"
+        >
+            Find Jobs →
+        </a>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<footer class="footer">
+
+    <div class="container footer-container">
+
+
+        <div>
+
+            <a
+                href="./"
+                class="logo footer-logo"
+            >
+                Job<span>Portal</span>
+            </a>
+
+
+            <p>
+                Simple and focused job discovery.
+            </p>
+
+        </div>
+
+
+
+        <div>
+
+            <h3>
+                Explore
+            </h3>
+
+            <a href="jobs.html">
+                Jobs
+            </a>
+
+            <a href="companies.html">
+                Companies
+            </a>
+
+            <a href="categories.html">
+                Categories
+            </a>
+
+            <a href="locations.html">
+                Locations
+            </a>
+
+        </div>
+
+
+
+        <div>
+
+            <h3>
+                Job Types
+            </h3>
+
+            <a href="jobs.html?type=full-time">
+                Full Time
+            </a>
+
+            <a href="jobs.html?type=internship">
+                Internships
+            </a>
+
+            <a href="jobs.html?mode=remote">
+                Remote
+            </a>
+
+            <a href="jobs.html?experience=fresher">
+                Freshers
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        © 2026 JobPortal.
+        All rights reserved.
+
+    </div>
+
+</footer>
+
+
+
+<script src="assets/js/locations.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,818 @@
+
+/* =========================================
+   LOCATIONS HERO
+========================================= */
+
+.locations-hero {
+
+    padding:
+        75px 0 60px;
+
+    background:
+        #f7f6f1;
+
+    border-bottom:
+        1px solid #e3e5df;
+}
+
+.locations-hero h1 {
+
+    margin:
+        10px 0 15px;
+
+    max-width:
+        800px;
+
+    font-size:
+        clamp(42px, 6vw, 70px);
+
+    line-height:
+        1.05;
+
+    letter-spacing:
+        -2px;
+}
+
+.locations-hero h1 span {
+
+    color:
+        #244d3b;
+}
+
+.locations-hero p {
+
+    max-width:
+        700px;
+
+    margin:
+        0;
+
+    color:
+        #70766f;
+
+    font-size:
+        17px;
+
+    line-height:
+        1.7;
+}
+
+
+/* =========================================
+   SEARCH
+========================================= */
+
+.location-search {
+
+    max-width:
+        650px;
+
+    margin-top:
+        35px;
+
+    height:
+        58px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        12px;
+
+    padding:
+        0 18px;
+
+    background:
+        #ffffff;
+
+    border:
+        1px solid #dfe3dc;
+
+    border-radius:
+        10px;
+
+    box-shadow:
+        0 6px 25px
+        rgba(0, 0, 0, 0.04);
+}
+
+.location-search span {
+
+    color:
+        #244d3b;
+
+    font-size:
+        25px;
+}
+
+.location-search input {
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    border:
+        0;
+
+    outline:
+        0;
+
+    background:
+        transparent;
+
+    font-size:
+        15px;
+}
+
+
+/* =========================================
+   MAP HEADER
+========================================= */
+
+.map-section {
+
+    padding-top:
+        65px;
+}
+
+.map-job-count {
+
+    color:
+        #70766f;
+
+    font-size:
+        14px;
+}
+
+
+/* =========================================
+   MAP LAYOUT
+========================================= */
+
+.map-layout {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        minmax(0, 1.5fr)
+        minmax(300px, 0.7fr);
+
+    gap:
+        24px;
+
+    margin-top:
+        25px;
+}
+
+
+/* =========================================
+   MAP CARD
+========================================= */
+
+.india-map-card {
+
+    position:
+        relative;
+
+    min-height:
+        650px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    background:
+        #ffffff;
+
+    border:
+        1px solid #e1e4de;
+
+    border-radius:
+        16px;
+
+    padding:
+        35px;
+
+    overflow:
+        hidden;
+}
+
+
+/* =========================================
+   MAP
+========================================= */
+
+.india-map {
+
+    width:
+        100%;
+
+    max-width:
+        570px;
+
+    min-height:
+        550px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+}
+
+.india-map svg {
+
+    width:
+        100%;
+
+    height:
+        auto;
+
+    max-height:
+        570px;
+}
+
+
+/* =========================================
+   MAP STATES
+
+   These classes are used by JS.
+========================================= */
+
+.india-map path {
+
+    fill:
+        #e9eee9;
+
+    stroke:
+        #ffffff;
+
+    stroke-width:
+        1.2;
+
+    cursor:
+        pointer;
+
+    transition:
+        fill 0.18s ease,
+        transform 0.18s ease;
+}
+
+.india-map path:hover {
+
+    fill:
+        #91ae9b;
+}
+
+.india-map path.has-jobs {
+
+    fill:
+        #b5c9ba;
+}
+
+.india-map path.has-jobs:hover {
+
+    fill:
+        #244d3b;
+}
+
+.india-map path.selected {
+
+    fill:
+        #244d3b;
+}
+
+
+/* =========================================
+   MAP TOOLTIP
+========================================= */
+
+.map-tooltip {
+
+    position:
+        fixed;
+
+    z-index:
+        1000;
+
+    display:
+        none;
+
+    pointer-events:
+        none;
+
+    min-width:
+        150px;
+
+    padding:
+        10px 13px;
+
+    background:
+        #202420;
+
+    color:
+        #ffffff;
+
+    border-radius:
+        7px;
+
+    font-size:
+        12px;
+
+    line-height:
+        1.5;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0, 0, 0, 0.15);
+}
+
+.map-tooltip strong {
+
+    display:
+        block;
+
+    font-size:
+        13px;
+
+    margin-bottom:
+        2px;
+}
+
+
+/* =========================================
+   SELECTED STATE
+========================================= */
+
+.selected-state {
+
+    position:
+        absolute;
+
+    left:
+        25px;
+
+    bottom:
+        25px;
+
+    right:
+        25px;
+
+    padding:
+        12px 15px;
+
+    background:
+        #f5f7f4;
+
+    border:
+        1px solid #e1e5df;
+
+    border-radius:
+        8px;
+
+    color:
+        #70766f;
+
+    font-size:
+        13px;
+
+    text-align:
+        center;
+}
+
+.selected-state.active {
+
+    color:
+        #244d3b;
+
+    font-weight:
+        700;
+}
+
+
+/* =========================================
+   POPULAR LOCATIONS
+========================================= */
+
+.popular-locations {
+
+    background:
+        #ffffff;
+
+    border:
+        1px solid #e1e4de;
+
+    border-radius:
+        16px;
+
+    padding:
+        28px;
+
+    min-height:
+        650px;
+}
+
+.popular-heading h3 {
+
+    margin:
+        5px 0 25px;
+
+    font-size:
+        25px;
+}
+
+
+/* =========================================
+   POPULAR LIST
+========================================= */
+
+.popular-location-list {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        8px;
+}
+
+.popular-location {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        15px;
+
+    padding:
+        14px 12px;
+
+    border-bottom:
+        1px solid #edf0ec;
+
+    text-decoration:
+        none;
+
+    color:
+        #202420;
+
+    transition:
+        background 0.2s ease;
+}
+
+.popular-location:hover {
+
+    background:
+        #f5f7f4;
+
+    border-radius:
+        7px;
+}
+
+.popular-location-info {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        12px;
+
+    min-width:
+        0;
+}
+
+.popular-number {
+
+    width:
+        30px;
+
+    height:
+        30px;
+
+    flex-shrink:
+        0;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    background:
+        #edf3ee;
+
+    color:
+        #244d3b;
+
+    border-radius:
+        50%;
+
+    font-size:
+        11px;
+
+    font-weight:
+        800;
+}
+
+.popular-name {
+
+    font-size:
+        14px;
+
+    font-weight:
+        700;
+
+    white-space:
+        nowrap;
+
+    overflow:
+        hidden;
+
+    text-overflow:
+        ellipsis;
+}
+
+.popular-jobs {
+
+    flex-shrink:
+        0;
+
+    color:
+        #70766f;
+
+    font-size:
+        12px;
+}
+
+
+/* =========================================
+   STATES
+========================================= */
+
+.states-section {
+
+    background:
+        #f7f6f1;
+}
+
+.state-list {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap:
+        12px;
+}
+
+.state-card {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        15px;
+
+    padding:
+        18px;
+
+    background:
+        #ffffff;
+
+    border:
+        1px solid #e1e4de;
+
+    border-radius:
+        9px;
+
+    text-decoration:
+        none;
+
+    color:
+        #202420;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.state-card:hover {
+
+    transform:
+        translateY(-2px);
+
+    border-color:
+        #244d3b;
+
+    box-shadow:
+        0 8px 20px
+        rgba(0, 0, 0, 0.05);
+}
+
+.state-name {
+
+    font-size:
+        14px;
+
+    font-weight:
+        700;
+}
+
+.state-jobs {
+
+    color:
+        #70766f;
+
+    font-size:
+        12px;
+
+    white-space:
+        nowrap;
+}
+
+.state-count {
+
+    color:
+        #70766f;
+
+    font-size:
+        14px;
+}
+
+
+/* =========================================
+   LOADING
+========================================= */
+
+.map-loading,
+.locations-loading {
+
+    width:
+        100%;
+
+    padding:
+        40px;
+
+    text-align:
+        center;
+
+    color:
+        #70766f;
+}
+
+
+/* =========================================
+   EMPTY
+========================================= */
+
+.no-locations {
+
+    display:
+        none;
+
+    padding:
+        50px;
+
+    text-align:
+        center;
+
+    background:
+        #ffffff;
+
+    border:
+        1px solid #e1e4de;
+
+    border-radius:
+        10px;
+
+    color:
+        #70766f;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (
+    max-width: 1000px
+) {
+
+    .map-layout {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+    .popular-locations {
+
+        min-height:
+            auto;
+
+    }
+
+    .state-list {
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+    }
+
+}
+
+
+@media (
+    max-width: 700px
+) {
+
+    .locations-hero {
+
+        padding:
+            50px 0 40px;
+
+    }
+
+    .locations-hero h1 {
+
+        letter-spacing:
+            -1px;
+
+    }
+
+    .india-map-card {
+
+        min-height:
+            500px;
+
+        padding:
+            20px;
+
+    }
+
+    .india-map {
+
+        min-height:
+            400px;
+
+    }
+
+    .state-list {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+}
+
+
+@media (
+    max-width: 450px
+) {
+
+    .state-list {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
