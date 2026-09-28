@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,14 +12,13 @@
 
     <meta
         name="description"
-        content="Find jobs across India by state and city."
+        content="Find jobs across India by city and location."
     >
 
     <title>Jobs by Location | JobPortal</title>
 
 
-    <!-- Main JobPortal CSS -->
-
+    <!-- Main Website CSS -->
     <link
         rel="stylesheet"
         href="assets/css/style.css"
@@ -28,10 +26,18 @@
 
 
     <!-- Locations CSS -->
-
     <link
         rel="stylesheet"
         href="assets/css/locations.css"
+    >
+
+
+    <!-- Leaflet Map CSS -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIINfQ3Gf6kF1J7QmN5g0M3G9H9G5Q5Q5Q="
+        crossorigin=""
     >
 
 </head>
@@ -40,9 +46,9 @@
 <body>
 
 
-<!-- =========================================
+<!-- =====================================================
      HEADER
-========================================= -->
+===================================================== -->
 
 <header class="site-header">
 
@@ -92,12 +98,13 @@
 </header>
 
 
+
 <main>
 
 
-<!-- =========================================
+<!-- =====================================================
      HERO
-========================================= -->
+===================================================== -->
 
 <section class="locations-hero">
 
@@ -115,8 +122,8 @@
 
 
         <p>
-            Explore job opportunities by state and city.
-            Click a state on the map to discover available jobs.
+            Explore job opportunities by city.
+            Click a location to view available jobs.
         </p>
 
 
@@ -127,7 +134,7 @@
             <input
                 type="text"
                 id="locationSearch"
-                placeholder="Search city or state..."
+                placeholder="Search city or location..."
                 autocomplete="off"
             >
 
@@ -139,9 +146,9 @@
 
 
 
-<!-- =========================================
+<!-- =====================================================
      MAP SECTION
-========================================= -->
+===================================================== -->
 
 <section class="section map-section">
 
@@ -157,7 +164,7 @@
                 </div>
 
                 <h2>
-                    Explore by state
+                    Explore by city
                 </h2>
 
             </div>
@@ -167,7 +174,7 @@
                 id="totalJobs"
                 class="map-job-count"
             >
-                Loading jobs...
+                Loading...
             </div>
 
         </div>
@@ -177,34 +184,21 @@
         <div class="map-layout">
 
 
-            <!-- =============================
-                 INDIA MAP
-            ============================== -->
+            <!-- =================================================
+                 MAP
+            ================================================== -->
 
             <div class="india-map-card">
 
                 <div
                     id="indiaMap"
                     class="india-map"
-                >
-
-                    <div class="map-loading">
-                        Loading India map...
-                    </div>
-
-                </div>
+                ></div>
 
 
-                <!-- Selected State -->
+                <div class="map-help">
 
-                <div
-                    id="selectedState"
-                    class="selected-state"
-                >
-
-                    <span>
-                        Click a state to view jobs
-                    </span>
+                    Click a city marker to view jobs
 
                 </div>
 
@@ -212,9 +206,9 @@
 
 
 
-            <!-- =============================
+            <!-- =================================================
                  POPULAR LOCATIONS
-            ============================== -->
+            ================================================== -->
 
             <aside class="popular-locations">
 
@@ -225,7 +219,7 @@
                     </div>
 
                     <h3>
-                        Top locations
+                        Top cities
                     </h3>
 
                 </div>
@@ -236,12 +230,19 @@
                     class="popular-location-list"
                 >
 
-                    Loading...
+                    <div class="locations-loading">
+                        Loading...
+                    </div>
 
                 </div>
 
-            </aside>
 
+                <div
+                    id="specialLocations"
+                    class="special-locations"
+                ></div>
+
+            </aside>
 
         </div>
 
@@ -251,11 +252,11 @@
 
 
 
-<!-- =========================================
-     ALL STATES
-========================================= -->
+<!-- =====================================================
+     ALL LOCATIONS
+===================================================== -->
 
-<section class="section states-section">
+<section class="section locations-list-section">
 
     <div class="container">
 
@@ -269,25 +270,25 @@
                 </div>
 
                 <h2>
-                    Browse by state
+                    Browse by city
                 </h2>
 
             </div>
 
 
             <div
-                id="stateCount"
+                id="locationCount"
                 class="state-count"
             >
-                0 states
+                0 locations
             </div>
 
         </div>
 
 
         <div
-            id="stateList"
-            class="state-list"
+            id="locationList"
+            class="location-list"
         >
 
             <div class="locations-loading">
@@ -312,9 +313,9 @@
 
 
 
-<!-- =========================================
+<!-- =====================================================
      CTA
-========================================= -->
+===================================================== -->
 
 <section class="cta-section">
 
@@ -327,8 +328,8 @@
             </div>
 
             <h2>
-                Find your next opportunity
-                anywhere in India.
+                Your next opportunity
+                could be one search away.
             </h2>
 
         </div>
@@ -350,9 +351,9 @@
 
 
 
-<!-- =========================================
+<!-- =====================================================
      FOOTER
-========================================= -->
+===================================================== -->
 
 <footer class="footer">
 
@@ -441,7 +442,22 @@
 
 
 
+<!-- =====================================================
+     LEAFLET JS
+===================================================== -->
+
+<script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+></script>
+
+
+
+<!-- Locations JS -->
+
 <script src="assets/js/locations.js"></script>
+
 
 </body>
 

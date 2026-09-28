@@ -1,0 +1,363 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Explore job opportunities by category. Find jobs across technology, software, data, cloud, marketing, finance and more."
+    >
+
+    <title>Job Categories - JobPortal</title>
+
+
+    <!-- Main website CSS -->
+
+    <link
+        rel="stylesheet"
+        href="assets/css/style.css"
+    >
+
+
+    <!-- Categories CSS -->
+
+    <link
+        rel="stylesheet"
+        href="assets/css/categories.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="site-header">
+
+    <div class="container nav-container">
+
+
+        <a
+            href="./"
+            class="logo"
+        >
+            Job<span>Portal</span>
+        </a>
+
+
+        <nav class="main-nav">
+
+            <a href="jobs.html">
+                Jobs
+            </a>
+
+            <a href="companies.html">
+                Companies
+            </a>
+
+            <a
+                href="categories.html"
+                class="active"
+            >
+                Categories
+            </a>
+
+            <a href="locations.html">
+                Locations
+            </a>
+
+        </nav>
+
+
+        <a
+            href="jobs.html"
+            class="browse-btn"
+        >
+            Browse Jobs
+        </a>
+
+    </div>
+
+</header>
+
+
+
+<main>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="categories-hero">
+
+    <div class="container">
+
+
+        <div class="section-label">
+            EXPLORE OPPORTUNITIES
+        </div>
+
+
+        <h1>
+
+            Find jobs by
+            <br>
+
+            <span>category.</span>
+
+        </h1>
+
+
+        <p>
+
+            Explore opportunities across different
+            industries, professions and areas of expertise.
+
+        </p>
+
+
+        <!-- SEARCH -->
+
+        <div class="category-search">
+
+            <span>⌕</span>
+
+            <input
+                type="text"
+                id="categorySearch"
+                placeholder="Search categories..."
+                autocomplete="off"
+            >
+
+        </div>
+
+
+        <!-- COUNT -->
+
+        <div
+            id="categoryCount"
+            class="category-count"
+        >
+            Loading categories...
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CATEGORIES
+===================================================== -->
+
+<section class="section categories-section">
+
+    <div class="container">
+
+
+        <div
+            id="categoriesList"
+            class="categories-list"
+        >
+
+            <div class="categories-loading">
+
+                Loading categories...
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="categoriesEmpty"
+            class="categories-empty"
+        >
+
+            <div class="empty-icon">
+                ×
+            </div>
+
+
+            <h3>
+                No categories found
+            </h3>
+
+
+            <p>
+                Try searching for another category.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CTA
+===================================================== -->
+
+<section class="cta-section">
+
+    <div class="container cta-container">
+
+
+        <div>
+
+            <div class="section-label">
+                START EXPLORING
+            </div>
+
+
+            <h2>
+
+                Your next opportunity
+                could be one search away.
+
+            </h2>
+
+        </div>
+
+
+        <a
+            href="jobs.html"
+            class="cta-btn"
+        >
+            Find Jobs →
+
+        </a>
+
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <div class="container footer-container">
+
+
+        <div>
+
+            <a
+                href="./"
+                class="logo footer-logo"
+            >
+                Job<span>Portal</span>
+            </a>
+
+
+            <p>
+                Simple and focused job discovery.
+            </p>
+
+        </div>
+
+
+
+        <div>
+
+            <h3>
+                Explore
+            </h3>
+
+
+            <a href="jobs.html">
+                Jobs
+            </a>
+
+
+            <a href="companies.html">
+                Companies
+            </a>
+
+
+            <a href="categories.html">
+                Categories
+            </a>
+
+
+            <a href="locations.html">
+                Locations
+            </a>
+
+        </div>
+
+
+
+        <div>
+
+            <h3>
+                Job Types
+            </h3>
+
+
+            <a href="jobs.html?type=full-time">
+                Full Time
+            </a>
+
+
+            <a href="jobs.html?type=internship">
+                Internships
+            </a>
+
+
+            <a href="jobs.html?mode=remote">
+                Remote
+            </a>
+
+
+            <a href="jobs.html?experience=fresher">
+                Freshers
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        © 2026 JobPortal.
+        All rights reserved.
+
+    </div>
+
+</footer>
+
+
+
+<script src="assets/js/categories.js"></script>
+
+</body>
+
+</html>

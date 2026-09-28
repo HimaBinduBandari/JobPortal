@@ -1,0 +1,402 @@
+
+/* =====================================================
+   COMPANIES HERO
+===================================================== */
+
+.companies-hero {
+    padding: 75px 0 55px;
+
+    background: #f7f6f1;
+
+    border-bottom: 1px solid #e3e5df;
+}
+
+
+.companies-hero h1 {
+    margin: 12px 0 18px;
+
+    max-width: 850px;
+
+    font-size: clamp(42px, 6vw, 70px);
+
+    line-height: 1.05;
+
+    letter-spacing: -2px;
+}
+
+
+.companies-hero h1 span {
+    color: #244d3b;
+}
+
+
+.companies-hero p {
+    max-width: 680px;
+
+    margin: 0;
+
+    color: #70766f;
+
+    font-size: 17px;
+
+    line-height: 1.7;
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+.company-search {
+    max-width: 650px;
+
+    height: 58px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-top: 32px;
+
+    padding: 0 18px;
+
+    background: #ffffff;
+
+    border: 1px solid #dfe3dc;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 6px 25px rgba(0, 0, 0, 0.04);
+}
+
+
+.company-search span {
+    color: #244d3b;
+
+    font-size: 25px;
+}
+
+
+.company-search input {
+    width: 100%;
+
+    height: 100%;
+
+    border: 0;
+
+    outline: 0;
+
+    background: transparent;
+
+    font-size: 15px;
+}
+
+
+/* =====================================================
+   COUNT
+===================================================== */
+
+.company-count {
+    margin-top: 15px;
+
+    color: #70766f;
+
+    font-size: 13px;
+}
+
+
+/* =====================================================
+   COMPANIES SECTION
+===================================================== */
+
+.companies-section {
+    background: #ffffff;
+}
+
+
+/* =====================================================
+   COMPANY LIST
+===================================================== */
+
+.companies-list {
+    max-width: 1050px;
+
+    margin: 0 auto;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+/* =====================================================
+   COMPANY ITEM
+===================================================== */
+
+.company-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 22px;
+
+    padding: 25px 10px;
+
+    border-bottom: 1px solid #e8ebe6;
+
+    text-decoration: none;
+
+    color: #202420;
+
+    transition:
+        padding 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.company-item:hover {
+    padding-left: 18px;
+
+    padding-right: 18px;
+
+    background: #fafbf9;
+}
+
+
+/* =====================================================
+   COMPANY LOGO
+===================================================== */
+
+.company-logo {
+    width: 72px;
+
+    height: 72px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    border: 1px solid #dfe4df;
+
+    border-radius: 12px;
+
+    background: #f4f6f3;
+}
+
+
+.company-logo img {
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: contain;
+
+    padding: 8px;
+}
+
+
+/* =====================================================
+   FIRST LETTER FALLBACK
+===================================================== */
+
+.company-logo-letter {
+    color: #244d3b;
+
+    font-size: 32px;
+
+    font-weight: 800;
+
+    line-height: 1;
+}
+
+
+/* =====================================================
+   COMPANY INFORMATION
+===================================================== */
+
+.company-info {
+    flex: 1;
+
+    min-width: 0;
+}
+
+
+.company-name {
+    margin-bottom: 6px;
+
+    color: #202420;
+
+    font-size: 20px;
+
+    font-weight: 800;
+}
+
+
+.company-description {
+    max-width: 700px;
+
+    overflow: hidden;
+
+    color: #70766f;
+
+    font-size: 13px;
+
+    line-height: 1.55;
+
+    display: -webkit-box;
+
+    -webkit-line-clamp: 2;
+
+    -webkit-box-orient: vertical;
+}
+
+
+.company-jobs {
+    flex-shrink: 0;
+
+    color: #244d3b;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    white-space: nowrap;
+}
+
+
+.company-arrow {
+    flex-shrink: 0;
+
+    color: #244d3b;
+
+    font-size: 20px;
+}
+
+
+/* =====================================================
+   EMPTY
+===================================================== */
+
+.companies-empty {
+    display: none;
+
+    padding: 70px 20px;
+
+    text-align: center;
+}
+
+
+.empty-icon {
+    width: 50px;
+
+    height: 50px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin: 0 auto 20px;
+
+    border-radius: 50%;
+
+    background: #edf2ee;
+
+    color: #244d3b;
+
+    font-size: 24px;
+}
+
+
+.companies-empty h3 {
+    margin-bottom: 8px;
+
+    font-size: 22px;
+}
+
+
+.companies-empty p {
+    color: #70766f;
+
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.companies-loading {
+    padding: 60px 20px;
+
+    text-align: center;
+
+    color: #70766f;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 700px) {
+
+    .companies-hero {
+        padding: 50px 0 40px;
+    }
+
+
+    .companies-hero h1 {
+        letter-spacing: -1px;
+    }
+
+
+    .company-item {
+        gap: 15px;
+
+        padding: 20px 5px;
+    }
+
+
+    .company-logo {
+        width: 58px;
+
+        height: 58px;
+    }
+
+
+    .company-logo-letter {
+        font-size: 25px;
+    }
+
+
+    .company-name {
+        font-size: 17px;
+    }
+
+
+    .company-description {
+        font-size: 12px;
+    }
+
+
+    .company-jobs {
+        display: none;
+    }
+
+
+    .company-arrow {
+        font-size: 18px;
+    }
+
+}
