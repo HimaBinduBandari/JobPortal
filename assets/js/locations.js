@@ -1,3 +1,4 @@
+
 "use strict";
 
 
@@ -5,7 +6,7 @@
    ELEMENTS
 ===================================================== */
 
-const mapElement =
+const indiaMap =
     document.getElementById("indiaMap");
 
 const locationSearch =
@@ -14,17 +15,17 @@ const locationSearch =
 const popularLocations =
     document.getElementById("popularLocations");
 
-const specialLocations =
-    document.getElementById("specialLocations");
+const stateList =
+    document.getElementById("stateList");
 
-const locationList =
-    document.getElementById("locationList");
-
-const locationCount =
-    document.getElementById("locationCount");
+const stateCount =
+    document.getElementById("stateCount");
 
 const totalJobs =
     document.getElementById("totalJobs");
+
+const selectedState =
+    document.getElementById("selectedState");
 
 const noLocations =
     document.getElementById("noLocations");
@@ -36,129 +37,300 @@ const noLocations =
 
 let allJobs = [];
 
-let cityCoordinates = [];
+let stateData = [];
 
-let locations = [];
+let cityData = [];
 
-let specialLocationsData = [];
 
-let leafletMap = null;
+/*
+ * Mapping of state names to common
+ * city/location names.
+ *
+ * We can expand this as your job data grows.
+ */
+
+const stateAliases = {
+
+    "Andhra Pradesh": [
+        "andhra pradesh",
+        "visakhapatnam",
+        "vijayawada",
+        "tirupati",
+        "guntur"
+    ],
+
+    "Arunachal Pradesh": [
+        "arunachal pradesh",
+        "itanagar"
+    ],
+
+    "Assam": [
+        "assam",
+        "guwahati"
+    ],
+
+    "Bihar": [
+        "bihar",
+        "patna"
+    ],
+
+    "Chhattisgarh": [
+        "chhattisgarh",
+        "raipur",
+        "bhilai"
+    ],
+
+    "Goa": [
+        "goa",
+        "panaji"
+    ],
+
+    "Gujarat": [
+        "gujarat",
+        "ahmedabad",
+        "surat",
+        "vadodara",
+        "rajkot"
+    ],
+
+    "Haryana": [
+        "haryana",
+        "gurugram",
+        "gurgaon",
+        "faridabad"
+    ],
+
+    "Himachal Pradesh": [
+        "himachal pradesh",
+        "shimla"
+    ],
+
+    "Jharkhand": [
+        "jharkhand",
+        "ranchi",
+        "jamshedpur"
+    ],
+
+    "Karnataka": [
+        "karnataka",
+        "bangalore",
+        "bengaluru",
+        "mysore",
+        "mysuru",
+        "mangalore",
+        "hubli"
+    ],
+
+    "Kerala": [
+        "kerala",
+        "kochi",
+        "cochin",
+        "thiruvananthapuram",
+        "trivandrum",
+        "calicut"
+    ],
+
+    "Madhya Pradesh": [
+        "madhya pradesh",
+        "bhopal",
+        "indore",
+        "gwalior",
+        "jabalpur"
+    ],
+
+    "Maharashtra": [
+        "maharashtra",
+        "mumbai",
+        "pune",
+        "nagpur",
+        "nashik",
+        "thane",
+        "aurangabad"
+    ],
+
+    "Manipur": [
+        "manipur",
+        "imphal"
+    ],
+
+    "Meghalaya": [
+        "meghalaya",
+        "shillong"
+    ],
+
+    "Mizoram": [
+        "mizoram",
+        "aizawl"
+    ],
+
+    "Nagaland": [
+        "nagaland",
+        "kohima"
+    ],
+
+    "Odisha": [
+        "odisha",
+        "orissa",
+        "bhubaneswar",
+        "cuttack"
+    ],
+
+    "Punjab": [
+        "punjab",
+        "chandigarh",
+        "ludhiana",
+        "amritsar"
+    ],
+
+    "Rajasthan": [
+        "rajasthan",
+        "jaipur",
+        "jodhpur",
+        "udaipur",
+        "kota"
+    ],
+
+    "Sikkim": [
+        "sikkim",
+        "gangtok"
+    ],
+
+    "Tamil Nadu": [
+        "tamil nadu",
+        "chennai",
+        "coimbatore",
+        "madurai",
+        "salem",
+        "trichy",
+        "tiruchirappalli"
+    ],
+
+    "Telangana": [
+        "telangana",
+        "hyderabad",
+        "warangal",
+        "secunderabad"
+    ],
+
+    "Tripura": [
+        "tripura",
+        "agartala"
+    ],
+
+    "Uttar Pradesh": [
+        "uttar pradesh",
+        "lucknow",
+        "noida",
+        "greater noida",
+        "kanpur",
+        "agra",
+        "varanasi",
+        "meerut"
+    ],
+
+    "Uttarakhand": [
+        "uttarakhand",
+        "dehradun",
+        "haridwar"
+    ],
+
+    "West Bengal": [
+        "west bengal",
+        "kolkata",
+        "howrah",
+        "siliguri"
+    ],
+
+    "Delhi": [
+        "delhi",
+        "new delhi"
+    ],
+
+    "Jammu and Kashmir": [
+        "jammu",
+        "kashmir",
+        "srinagar",
+        "jammu and kashmir"
+    ],
+
+    "Ladakh": [
+        "ladakh",
+        "leh"
+    ],
+
+    "Puducherry": [
+        "puducherry",
+        "pondicherry"
+    ]
+
+};
 
 
 /* =====================================================
-   MAP SETTINGS
+   LOAD JOB DATA
 ===================================================== */
 
-const INDIA_CENTER = [
-    22.5937,
-    78.9629
-];
-
-const INDIA_ZOOM = 5;
-
-
-/* =====================================================
-   LOAD DATA
-===================================================== */
-
-async function loadData() {
+async function loadJobs() {
 
     try {
 
-        const [
-            jobsResponse,
-            citiesResponse
-        ] = await Promise.all([
-
-            fetch("data/jobs.json"),
-
-            fetch("data/cities.json")
-
-        ]);
-
-
-        if (!jobsResponse.ok) {
-
-            throw new Error(
-                "Unable to load jobs.json"
+        const response =
+            await fetch(
+                "data/jobs.json"
             );
 
-        }
 
-
-        if (!citiesResponse.ok) {
+        if (!response.ok) {
 
             throw new Error(
-                "Unable to load cities.json"
+                "Unable to load data/jobs.json"
             );
 
         }
 
 
         allJobs =
-            await jobsResponse.json();
+            await response.json();
 
 
-        cityCoordinates =
-            await citiesResponse.json();
-
-
-        if (!Array.isArray(allJobs)) {
+        if (
+            !Array.isArray(allJobs)
+        ) {
 
             throw new Error(
-                "jobs.json must contain an array."
+                "jobs.json must contain an array of jobs."
             );
 
         }
 
 
-        if (!Array.isArray(cityCoordinates)) {
-
-            throw new Error(
-                "cities.json must contain an array."
-            );
-
-        }
+        buildLocationData();
 
 
-        buildLocations();
-
-        initializeMap();
-
-        renderPopularLocations();
-
-        renderLocations();
-
-        renderSpecialLocations();
+        await loadIndiaMap();
 
 
-        totalJobs.textContent =
-            `${allJobs.length} ${
-                allJobs.length === 1
-                    ? "job"
-                    : "jobs"
-            }`;
-
-    }
-    catch (error) {
+    } catch (error) {
 
         console.error(
-            "Locations error:",
             error
         );
 
 
-        mapElement.innerHTML = `
+        totalJobs.textContent =
+            "Unable to load jobs";
 
-            <div class="locations-loading">
 
-                Unable to load location data.
+        indiaMap.innerHTML = `
+
+            <div class="map-loading">
+
+                Unable to load job data.
 
                 <br><br>
 
-                <strong>
-                    Check jobs.json and cities.json
-                </strong>
+                Please check
+                <strong>data/jobs.json</strong>.
 
             </div>
 
@@ -170,283 +342,176 @@ async function loadData() {
 
 
 /* =====================================================
-   BUILD LOCATIONS
+   BUILD LOCATION DATA
 ===================================================== */
 
-function buildLocations() {
+function buildLocationData() {
 
-    const locationMap =
-        new Map();
+    const states = {};
 
-    const specialMap =
-        new Map();
+    const cities = {};
 
 
     allJobs.forEach(
         function (job) {
 
-            const rawLocation =
-                getJobLocation(job);
+            const location =
+                String(
+                    job.location ||
+                    ""
+                )
+                .trim();
 
 
-            if (!rawLocation) {
-
+            if (!location) {
                 return;
+            }
+
+
+            /*
+             * City count
+             */
+
+            const cityKey =
+                location.toLowerCase();
+
+
+            if (
+                !cities[cityKey]
+            ) {
+
+                cities[cityKey] = {
+
+                    name:
+                        location,
+
+                    count:
+                        0
+
+                };
 
             }
 
 
-            const cities =
-                splitLocations(
-                    rawLocation
+            cities[cityKey].count++;
+
+
+            /*
+             * State detection
+             */
+
+            const state =
+                findState(
+                    location
                 );
 
 
-            cities.forEach(
-                function (city) {
-
-                    if (!city) {
-
-                        return;
-
-                    }
+            if (!state) {
+                return;
+            }
 
 
-                    if (
-                        isSpecialLocation(city)
-                    ) {
+            if (
+                !states[state]
+            ) {
 
-                        const key =
-                            normalize(city);
+                states[state] = {
 
+                    name:
+                        state,
 
-                        if (
-                            !specialMap.has(key)
-                        ) {
+                    count:
+                        0
 
-                            specialMap.set(
-                                key,
-                                {
-                                    name: city,
-                                    count: 0
-                                }
-                            );
+                };
 
-                        }
+            }
 
 
-                        specialMap.get(
-                            key
-                        ).count++;
-
-                        return;
-
-                    }
-
-
-                    const matchedCity =
-                        findCity(city);
-
-
-                    const finalName =
-                        matchedCity
-                            ? matchedCity.name
-                            : cleanCityName(city);
-
-
-                    const key =
-                        normalize(finalName);
-
-
-                    if (
-                        !locationMap.has(key)
-                    ) {
-
-                        locationMap.set(
-                            key,
-                            {
-                                name: finalName,
-
-                                count: 0,
-
-                                coordinates:
-                                    matchedCity
-                            }
-                        );
-
-                    }
-
-
-                    locationMap.get(
-                        key
-                    ).count++;
-
-                }
-            );
+            states[state].count++;
 
         }
     );
 
 
-    locations =
-        Array.from(
-            locationMap.values()
+    stateData =
+        Object.values(
+            states
         )
-        .sort(sortLocations);
-
-
-    specialLocationsData =
-        Array.from(
-            specialMap.values()
-        )
-        .sort(sortLocations);
-
-}
-
-
-/* =====================================================
-   LOCATION FIELD
-===================================================== */
-
-function getJobLocation(job) {
-
-    if (
-        job.location !== undefined
-    ) {
-
-        return String(
-            job.location
-        ).trim();
-
-    }
-
-
-    if (
-        job.Location !== undefined
-    ) {
-
-        return String(
-            job.Location
-        ).trim();
-
-    }
-
-
-    return "";
-
-}
-
-
-/* =====================================================
-   SPLIT MULTIPLE CITIES
-===================================================== */
-
-function splitLocations(value) {
-
-    return String(value || "")
-
-        .replace(
-            /\s*\/\s*/g,
-            ","
-        )
-
-        .replace(
-            /\s*\|\s*/g,
-            ","
-        )
-
-        .replace(
-            /\s*&\s*/g,
-            ","
-        )
-
-        .replace(
-            /\s+\band\b\s+/gi,
-            ","
-        )
-
-        .split(",")
-
-        .map(
-            function (item) {
-
-                return cleanCityName(
-                    item
-                );
-
-            }
-        )
-
-        .filter(Boolean);
-
-}
-
-
-/* =====================================================
-   CLEAN CITY
-===================================================== */
-
-function cleanCityName(value) {
-
-    return String(value || "")
-
-        .trim()
-
-        .replace(
-            /\s+/g,
-            " "
+        .sort(
+            sortLocations
         );
 
+
+    cityData =
+        Object.values(
+            cities
+        )
+        .sort(
+            sortLocations
+        );
+
+
+    totalJobs.textContent =
+        `${allJobs.length} ${
+            allJobs.length === 1
+                ? "job"
+                : "jobs"
+        }`;
+
+
+    renderPopularLocations();
+
+
+    renderStates();
+
 }
 
 
 /* =====================================================
-   NORMALIZE
+   FIND STATE
 ===================================================== */
 
-function normalize(value) {
+function findState(location) {
 
-    return String(value || "")
-
-        .toLowerCase()
-
-        .normalize("NFD")
-
-        .replace(
-            /[\u0300-\u036f]/g,
-            ""
-        )
-
-        .replace(
-            /\s+/g,
-            " "
-        )
-
-        .trim();
-
-}
+    const text =
+        location
+            .toLowerCase()
+            .trim();
 
 
-/* =====================================================
-   FIND CITY
-===================================================== */
+    /*
+     * Direct state match
+     */
 
-function findCity(name) {
+    for (
+        const state in stateAliases
+    ) {
 
-    const search =
-        normalize(name);
+        const aliases =
+            stateAliases[state];
 
 
-    return cityCoordinates.find(
-        function (city) {
+        for (
+            const alias of aliases
+        ) {
 
-            return (
-                normalize(city.name) ===
-                search
-            );
+            if (
+                text.includes(
+                    alias
+                )
+            ) {
+
+                return state;
+
+            }
 
         }
-    ) || null;
+
+    }
+
+
+    return null;
 
 }
 
@@ -474,253 +539,317 @@ function sortLocations(a, b) {
 
 
 /* =====================================================
-   SPECIAL LOCATIONS
+   LOAD INDIA SVG
 ===================================================== */
 
-function isSpecialLocation(
-    location
-) {
+async function loadIndiaMap() {
 
-    const value =
-        normalize(location);
+    try {
 
+        /*
+         * SVG map of India.
+         *
+         * Each state path has a data-id.
+         */
 
-    const keywords = [
-
-        "remote",
-
-        "work from home",
-
-        "wfh",
-
-        "anywhere",
-
-        "pan india",
-
-        "india"
-
-    ];
+        const response =
+            await fetch(
+                "https://cdn.jsdelivr.net/npm/@svg-maps/india@1.0.1/india.svg"
+            );
 
 
-    return keywords.includes(
-        value
-    );
+        if (!response.ok) {
+
+            throw new Error(
+                "India map could not be loaded."
+            );
+
+        }
+
+
+        const svg =
+            await response.text();
+
+
+        indiaMap.innerHTML =
+            svg;
+
+
+        setupMap();
+
+
+    } catch (error) {
+
+        console.error(
+            error
+        );
+
+
+        /*
+         * If external SVG is unavailable,
+         * still show the state list.
+         */
+
+        indiaMap.innerHTML = `
+
+            <div class="map-loading">
+
+                India map could not be loaded.
+
+                <br><br>
+
+                You can still browse jobs
+                using the state list below.
+
+            </div>
+
+        `;
+
+    }
 
 }
 
 
 /* =====================================================
-   INITIALIZE MAP
+   SETUP MAP
 ===================================================== */
 
-function initializeMap() {
+function setupMap() {
 
-    leafletMap =
-        L.map(
-            "indiaMap",
-            {
-
-                center:
-                    INDIA_CENTER,
-
-                zoom:
-                    INDIA_ZOOM,
-
-                minZoom:
-                    4,
-
-                maxZoom:
-                    12,
-
-                scrollWheelZoom:
-                    true
-
-            }
+    const paths =
+        indiaMap.querySelectorAll(
+            "path"
         );
 
 
-    /*
-     * OpenStreetMap
-     */
-
-    L.tileLayer(
-
-        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-
-        {
-
-            maxZoom:
-                19,
-
-            attribution:
-                '&copy; OpenStreetMap contributors'
-
-        }
-
-    ).addTo(
-        leafletMap
+    console.log(
+        "Map states found:",
+        paths.length
     );
 
 
-    /*
-     * Add city labels
-     */
+    paths.forEach(
+        function (path) {
 
-    locations.forEach(
-        function (location) {
+            const stateName =
+                getMapStateName(
+                    path
+                );
+
+
+            if (!stateName) {
+                return;
+            }
+
+
+            const state =
+                stateData.find(
+                    function (item) {
+
+                        return normalize(
+                            item.name
+                        ) ===
+                        normalize(
+                            stateName
+                        );
+
+                    }
+                );
+
 
             if (
-                !location.coordinates
+                state &&
+                state.count > 0
             ) {
 
-                return;
+                path.classList.add(
+                    "has-jobs"
+                );
 
             }
 
 
-            addCityLabel(
-                location
+            path.addEventListener(
+                "mouseenter",
+                function (event) {
+
+                    showTooltip(
+                        event,
+                        stateName,
+                        state
+                    );
+
+                }
+            );
+
+
+            path.addEventListener(
+                "mousemove",
+                function (event) {
+
+                    moveTooltip(
+                        event
+                    );
+
+                }
+            );
+
+
+            path.addEventListener(
+                "mouseleave",
+                hideTooltip
+            );
+
+
+            path.addEventListener(
+                "click",
+                function () {
+
+                    selectState(
+                        stateName
+                    );
+
+                }
             );
 
         }
     );
 
+}
 
-    /*
-     * India view
-     */
 
-    leafletMap.setView(
+/* =====================================================
+   MAP STATE NAME
+===================================================== */
 
-        INDIA_CENTER,
+function getMapStateName(path) {
 
-        INDIA_ZOOM
+    return (
+        path.getAttribute(
+            "data-name"
+        ) ||
 
+        path.getAttribute(
+            "name"
+        ) ||
+
+        path.getAttribute(
+            "aria-label"
+        ) ||
+
+        path.getAttribute(
+            "id"
+        )
     );
 
 }
 
 
 /* =====================================================
-   ADD CLICKABLE CITY LABEL
+   SELECT STATE
 ===================================================== */
 
-function addCityLabel(
-    location
-) {
+function selectState(stateName) {
 
-    const latitude =
-        Number(
-            location.coordinates.latitude
+    const state =
+        stateData.find(
+            function (item) {
+
+                return (
+                    normalize(
+                        item.name
+                    ) ===
+                    normalize(
+                        stateName
+                    )
+                );
+
+            }
         );
 
 
-    const longitude =
-        Number(
-            location.coordinates.longitude
+    /*
+     * Remove previous selection.
+     */
+
+    indiaMap
+        .querySelectorAll(
+            "path.selected"
+        )
+        .forEach(
+            function (path) {
+
+                path.classList.remove(
+                    "selected"
+                );
+
+            }
         );
 
 
-    if (
-        !Number.isFinite(latitude) ||
-        !Number.isFinite(longitude)
-    ) {
+    /*
+     * Update information.
+     */
+
+    if (state) {
+
+        selectedState.classList.add(
+            "active"
+        );
+
+
+        selectedState.innerHTML = `
+
+            <strong>
+                ${escapeHTML(
+                    state.name
+                )}
+            </strong>
+
+            ·
+
+            ${state.count}
+            ${
+                state.count === 1
+                    ? "job"
+                    : "jobs"
+            }
+
+        `;
+
+
+        /*
+         * Open filtered jobs.
+         */
+
+        window.location.href =
+            "jobs.html?location=" +
+            encodeURIComponent(
+                state.name
+            );
+
 
         return;
 
     }
 
 
-    /*
-     * Bigger labels for cities
-     * with more jobs.
-     */
-
-    const large =
-        location.count >= 10
-            ? "large"
-            : "";
-
-
-    const icon =
-        L.divIcon({
-
-            className:
-                "city-map-wrapper",
-
-            html: `
-
-                <a
-                    href="jobs.html?location=${encodeURIComponent(
-                        location.name
-                    )}"
-                    class="city-map-label ${large}"
-                    title="View ${escapeHTML(
-                        location.name
-                    )} jobs"
-                >
-
-                    <span
-                        class="city-map-dot"
-                    ></span>
-
-
-                    <span
-                        class="city-map-name"
-                    >
-                        ${escapeHTML(
-                            location.name
-                        )}
-                    </span>
-
-
-                    <span
-                        class="city-map-count"
-                    >
-
-                        ${location.count}
-
-                    </span>
-
-                </a>
-
-            `,
-
-            /*
-             * Important:
-             * Let the label extend around
-             * the coordinate.
-             */
-
-            iconSize:
-                null,
-
-            iconAnchor:
-                [0, 12]
-
-        });
-
-
-    L.marker(
-
-        [
-            latitude,
-            longitude
-        ],
-
-        {
-
-            icon:
-                icon,
-
-            interactive:
-                true
-
-        }
-
-    ).addTo(
-        leafletMap
+    selectedState.classList.add(
+        "active"
     );
+
+
+    selectedState.innerHTML = `
+
+        <strong>
+            ${escapeHTML(
+                stateName
+            )}
+        </strong>
+
+        · No jobs currently listed
+
+    `;
 
 }
 
@@ -732,7 +861,7 @@ function addCityLabel(
 function renderPopularLocations() {
 
     const popular =
-        locations.slice(
+        cityData.slice(
             0,
             10
         );
@@ -742,15 +871,8 @@ function renderPopularLocations() {
         popular.length === 0
     ) {
 
-        popularLocations.innerHTML = `
-
-            <div class="locations-loading">
-
-                No locations available.
-
-            </div>
-
-        `;
+        popularLocations.innerHTML =
+            "<p>No locations available.</p>";
 
         return;
 
@@ -760,10 +882,7 @@ function renderPopularLocations() {
     popularLocations.innerHTML =
         popular
             .map(
-                function (
-                    location,
-                    index
-                ) {
+                function (location, index) {
 
                     return `
 
@@ -774,38 +893,23 @@ function renderPopularLocations() {
                             )}"
                         >
 
-                            <div
-                                class="popular-location-info"
-                            >
+                            <div class="popular-location-info">
 
-                                <div
-                                    class="popular-number"
-                                >
-
+                                <div class="popular-number">
                                     ${index + 1}
-
                                 </div>
 
-
-                                <div
-                                    class="popular-name"
-                                >
-
+                                <div class="popular-name">
                                     ${escapeHTML(
                                         location.name
                                     )}
-
                                 </div>
 
                             </div>
 
-
-                            <div
-                                class="popular-jobs"
-                            >
+                            <div class="popular-jobs">
 
                                 ${location.count}
-
                                 ${
                                     location.count === 1
                                         ? "job"
@@ -826,88 +930,27 @@ function renderPopularLocations() {
 
 
 /* =====================================================
-   SPECIAL LOCATIONS
+   STATES LIST
 ===================================================== */
 
-function renderSpecialLocations() {
-
-    if (
-        specialLocationsData.length === 0
-    ) {
-
-        specialLocations.innerHTML =
-            "";
-
-        return;
-
-    }
-
-
-    specialLocations.innerHTML = `
-
-        <div class="special-title">
-
-            Other locations
-
-        </div>
-
-
-        ${
-            specialLocationsData
-                .map(
-                    function (location) {
-
-                        return `
-
-                            <a
-                                class="special-location"
-                                href="jobs.html?location=${encodeURIComponent(
-                                    location.name
-                                )}"
-                            >
-
-                                ${escapeHTML(
-                                    location.name
-                                )}
-
-                                (${location.count})
-
-                            </a>
-
-                        `;
-
-                    }
-                )
-                .join("")
-        }
-
-    `;
-
-}
-
-
-/* =====================================================
-   ALL LOCATIONS
-===================================================== */
-
-function renderLocations(
-    filteredLocations =
-        locations
+function renderStates(
+    filteredStates =
+        stateData
 ) {
 
-    locationCount.textContent =
-        `${filteredLocations.length} ${
-            filteredLocations.length === 1
-                ? "location"
-                : "locations"
+    stateCount.textContent =
+        `${filteredStates.length} ${
+            filteredStates.length === 1
+                ? "state"
+                : "states"
         }`;
 
 
     if (
-        filteredLocations.length === 0
+        filteredStates.length === 0
     ) {
 
-        locationList.innerHTML =
+        stateList.innerHTML =
             "";
 
         noLocations.style.display =
@@ -922,39 +965,33 @@ function renderLocations(
         "none";
 
 
-    locationList.innerHTML =
-        filteredLocations
+    stateList.innerHTML =
+        filteredStates
             .map(
-                function (location) {
+                function (state) {
 
                     return `
 
                         <a
                             href="jobs.html?location=${encodeURIComponent(
-                                location.name
+                                state.name
                             )}"
-                            class="location-card"
+                            class="state-card"
                         >
 
-                            <div
-                                class="location-name"
-                            >
+                            <div class="state-name">
 
                                 ${escapeHTML(
-                                    location.name
+                                    state.name
                                 )}
 
                             </div>
 
+                            <div class="state-jobs">
 
-                            <div
-                                class="location-jobs"
-                            >
-
-                                ${location.count}
-
+                                ${state.count}
                                 ${
-                                    location.count === 1
+                                    state.count === 1
                                         ? "job"
                                         : "jobs"
                                 }
@@ -976,49 +1013,285 @@ function renderLocations(
    SEARCH
 ===================================================== */
 
-if (locationSearch) {
+locationSearch.addEventListener(
+    "input",
+    function () {
 
-    locationSearch.addEventListener(
-        "input",
-        function () {
-
-            const search =
-                normalize(
-                    locationSearch.value
-                );
+        const search =
+            locationSearch.value
+                .trim()
+                .toLowerCase();
 
 
-            if (!search) {
+        if (!search) {
 
-                renderLocations(
-                    locations
-                );
+            renderStates(
+                stateData
+            );
 
-                return;
+            return;
 
-            }
+        }
 
 
-            const filtered =
-                locations.filter(
-                    function (location) {
+        /*
+         * Search states first.
+         */
 
-                        return normalize(
-                            location.name
-                        )
+        const matchingStates =
+            stateData.filter(
+                function (state) {
+
+                    return state.name
+                        .toLowerCase()
                         .includes(
                             search
                         );
 
-                    }
-                );
+                }
+            );
 
 
-            renderLocations(
-                filtered
+        /*
+         * If a city matches,
+         * show the city directly.
+         */
+
+        const matchingCities =
+            cityData.filter(
+                function (city) {
+
+                    return city.name
+                        .toLowerCase()
+                        .includes(
+                            search
+                        );
+
+                }
+            );
+
+
+        if (
+            matchingStates.length
+        ) {
+
+            renderStates(
+                matchingStates
+            );
+
+        } else {
+
+            renderCitySearchResults(
+                matchingCities
             );
 
         }
+
+    }
+);
+
+
+/* =====================================================
+   CITY SEARCH RESULTS
+===================================================== */
+
+function renderCitySearchResults(
+    cities
+) {
+
+    stateCount.textContent =
+        `${cities.length} ${
+            cities.length === 1
+                ? "location"
+                : "locations"
+        }`;
+
+
+    if (
+        cities.length === 0
+    ) {
+
+        stateList.innerHTML =
+            "";
+
+        noLocations.style.display =
+            "block";
+
+        return;
+
+    }
+
+
+    noLocations.style.display =
+        "none";
+
+
+    stateList.innerHTML =
+        cities
+            .map(
+                function (city) {
+
+                    return `
+
+                        <a
+                            href="jobs.html?location=${encodeURIComponent(
+                                city.name
+                            )}"
+                            class="state-card"
+                        >
+
+                            <div class="state-name">
+
+                                ${escapeHTML(
+                                    city.name
+                                )}
+
+                            </div>
+
+                            <div class="state-jobs">
+
+                                ${city.count}
+                                ${
+                                    city.count === 1
+                                        ? "job"
+                                        : "jobs"
+                                }
+
+                            </div>
+
+                        </a>
+
+                    `;
+
+                }
+            )
+            .join("");
+
+}
+
+
+/* =====================================================
+   TOOLTIP
+===================================================== */
+
+let tooltip = null;
+
+
+function createTooltip() {
+
+    if (tooltip) {
+        return;
+    }
+
+
+    tooltip =
+        document.createElement(
+            "div"
+        );
+
+
+    tooltip.className =
+        "map-tooltip";
+
+
+    document.body.appendChild(
+        tooltip
+    );
+
+}
+
+
+function showTooltip(
+    event,
+    stateName,
+    state
+) {
+
+    createTooltip();
+
+
+    tooltip.innerHTML = `
+
+        <strong>
+            ${escapeHTML(
+                stateName
+            )}
+        </strong>
+
+        ${
+            state
+                ? state.count +
+                  (
+                    state.count === 1
+                        ? " job"
+                        : " jobs"
+                  )
+                : "No jobs"
+        }
+
+    `;
+
+
+    tooltip.style.display =
+        "block";
+
+
+    moveTooltip(
+        event
+    );
+
+}
+
+
+function moveTooltip(event) {
+
+    if (!tooltip) {
+        return;
+    }
+
+
+    tooltip.style.left =
+        (
+            event.clientX + 15
+        ) +
+        "px";
+
+
+    tooltip.style.top =
+        (
+            event.clientY + 15
+        ) +
+        "px";
+
+}
+
+
+function hideTooltip() {
+
+    if (!tooltip) {
+        return;
+    }
+
+
+    tooltip.style.display =
+        "none";
+
+}
+
+
+/* =====================================================
+   NORMALIZE
+===================================================== */
+
+function normalize(value) {
+
+    return String(
+        value || ""
+    )
+    .toLowerCase()
+    .replace(
+        /[^a-z0-9]/g,
+        ""
     );
 
 }
@@ -1030,32 +1303,29 @@ if (locationSearch) {
 
 function escapeHTML(value) {
 
-    return String(value || "")
-
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-
-        .replace(
-            /</g,
-            "&lt;"
-        )
-
-        .replace(
-            />/g,
-            "&gt;"
-        )
-
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-
-        .replace(
-            /'/g,
-            "&#039;"
-        );
+    return String(
+        value || ""
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
+    );
 
 }
 
@@ -1064,4 +1334,4 @@ function escapeHTML(value) {
    START
 ===================================================== */
 
-loadData();
+loadJobs();

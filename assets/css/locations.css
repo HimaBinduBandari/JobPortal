@@ -1,500 +1,631 @@
-/* =====================================================
+
+/* =========================================
    LOCATIONS HERO
-===================================================== */
+========================================= */
 
 .locations-hero {
-    padding: 75px 0 60px;
-    background: #f7f6f1;
-    border-bottom: 1px solid #e3e5df;
+
+    padding:
+        75px 0 60px;
+
+    background:
+        #f7f6f1;
+
+    border-bottom:
+        1px solid #e3e5df;
 }
 
 .locations-hero h1 {
-    margin: 10px 0 15px;
-    max-width: 800px;
-    font-size: clamp(42px, 6vw, 70px);
-    line-height: 1.05;
-    letter-spacing: -2px;
+
+    margin:
+        10px 0 15px;
+
+    max-width:
+        800px;
+
+    font-size:
+        clamp(42px, 6vw, 70px);
+
+    line-height:
+        1.05;
+
+    letter-spacing:
+        -2px;
 }
 
 .locations-hero h1 span {
-    color: #244d3b;
+
+    color:
+        #244d3b;
 }
 
 .locations-hero p {
-    max-width: 700px;
-    margin: 0;
-    color: #70766f;
-    font-size: 17px;
-    line-height: 1.7;
+
+    max-width:
+        700px;
+
+    margin:
+        0;
+
+    color:
+        #70766f;
+
+    font-size:
+        17px;
+
+    line-height:
+        1.7;
 }
 
 
-/* =====================================================
-   LOCATION SEARCH
-===================================================== */
+/* =========================================
+   SEARCH
+========================================= */
 
 .location-search {
-    max-width: 650px;
-    margin-top: 35px;
-    height: 58px;
 
-    display: flex;
-    align-items: center;
-    gap: 12px;
+    max-width:
+        650px;
 
-    padding: 0 18px;
+    margin-top:
+        35px;
 
-    background: #ffffff;
-    border: 1px solid #dfe3dc;
-    border-radius: 10px;
+    height:
+        58px;
 
-    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.04);
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        12px;
+
+    padding:
+        0 18px;
+
+    background:
+        #ffffff;
+
+    border:
+        1px solid #dfe3dc;
+
+    border-radius:
+        10px;
+
+    box-shadow:
+        0 6px 25px
+        rgba(0, 0, 0, 0.04);
 }
 
 .location-search span {
-    color: #244d3b;
-    font-size: 25px;
+
+    color:
+        #244d3b;
+
+    font-size:
+        25px;
 }
 
 .location-search input {
-    width: 100%;
-    height: 100%;
 
-    border: 0;
-    outline: 0;
+    width:
+        100%;
 
-    background: transparent;
+    height:
+        100%;
 
-    font-size: 15px;
+    border:
+        0;
+
+    outline:
+        0;
+
+    background:
+        transparent;
+
+    font-size:
+        15px;
 }
 
 
-/* =====================================================
-   MAP SECTION
-===================================================== */
+/* =========================================
+   MAP HEADER
+========================================= */
 
 .map-section {
-    padding-top: 65px;
+
+    padding-top:
+        65px;
 }
 
 .map-job-count {
-    color: #70766f;
-    font-size: 14px;
+
+    color:
+        #70766f;
+
+    font-size:
+        14px;
 }
+
+
+/* =========================================
+   MAP LAYOUT
+========================================= */
 
 .map-layout {
-    display: grid;
+
+    display:
+        grid;
 
     grid-template-columns:
-        minmax(0, 1.65fr)
-        minmax(300px, 0.65fr);
+        minmax(0, 1.5fr)
+        minmax(300px, 0.7fr);
 
-    gap: 24px;
+    gap:
+        24px;
 
-    margin-top: 25px;
+    margin-top:
+        25px;
 }
 
 
-/* =====================================================
+/* =========================================
    MAP CARD
-===================================================== */
+========================================= */
 
 .india-map-card {
-    position: relative;
 
-    height: 680px;
+    position:
+        relative;
 
-    background: #eaf0eb;
+    min-height:
+        650px;
 
-    border: 1px solid #dce2dc;
+    display:
+        flex;
 
-    border-radius: 18px;
+    align-items:
+        center;
 
-    overflow: hidden;
+    justify-content:
+        center;
 
-    box-shadow:
-        0 10px 35px rgba(0, 0, 0, 0.06);
+    background:
+        #ffffff;
+
+    border:
+        1px solid #e1e4de;
+
+    border-radius:
+        16px;
+
+    padding:
+        35px;
+
+    overflow:
+        hidden;
 }
+
+
+/* =========================================
+   MAP
+========================================= */
 
 .india-map {
-    width: 100%;
-    height: 100%;
+
+    width:
+        100%;
+
+    max-width:
+        570px;
+
+    min-height:
+        550px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+}
+
+.india-map svg {
+
+    width:
+        100%;
+
+    height:
+        auto;
+
+    max-height:
+        570px;
 }
 
 
-/* =====================================================
-   LEAFLET
-===================================================== */
+/* =========================================
+   MAP STATES
 
-.leaflet-container {
-    width: 100%;
-    height: 100%;
+   These classes are used by JS.
+========================================= */
 
-    background: #e9efea;
+.india-map path {
 
-    font-family: inherit;
-}
+    fill:
+        #e9eee9;
 
+    stroke:
+        #ffffff;
 
-/*
-   Keep map below header.
-*/
+    stroke-width:
+        1.2;
 
-.leaflet-pane {
-    z-index: 1;
-}
-
-.leaflet-top,
-.leaflet-bottom {
-    z-index: 10;
-}
-
-
-/* =====================================================
-   CITY MAP LABEL
-===================================================== */
-
-/*
-   This replaces the tiny dot.
-
-   Each city is now a clickable label:
-   
-   Hyderabad
-   25 jobs
-*/
-
-.city-map-label {
-    display: flex;
-    align-items: center;
-
-    width: max-content;
-
-    padding: 6px 10px 6px 7px;
-
-    background: rgba(255, 255, 255, 0.96);
-
-    border: 1px solid #d8ded8;
-
-    border-radius: 8px;
-
-    box-shadow:
-        0 3px 12px rgba(0, 0, 0, 0.12);
-
-    cursor: pointer;
-
-    white-space: nowrap;
+    cursor:
+        pointer;
 
     transition:
-        transform 0.18s ease,
-        box-shadow 0.18s ease,
-        border-color 0.18s ease;
+        fill 0.18s ease,
+        transform 0.18s ease;
+}
+
+.india-map path:hover {
+
+    fill:
+        #91ae9b;
+}
+
+.india-map path.has-jobs {
+
+    fill:
+        #b5c9ba;
+}
+
+.india-map path.has-jobs:hover {
+
+    fill:
+        #244d3b;
+}
+
+.india-map path.selected {
+
+    fill:
+        #244d3b;
 }
 
 
-.city-map-label:hover {
-    transform: translateY(-2px);
+/* =========================================
+   MAP TOOLTIP
+========================================= */
 
-    border-color: #244d3b;
+.map-tooltip {
+
+    position:
+        fixed;
+
+    z-index:
+        1000;
+
+    display:
+        none;
+
+    pointer-events:
+        none;
+
+    min-width:
+        150px;
+
+    padding:
+        10px 13px;
+
+    background:
+        #202420;
+
+    color:
+        #ffffff;
+
+    border-radius:
+        7px;
+
+    font-size:
+        12px;
+
+    line-height:
+        1.5;
 
     box-shadow:
-        0 7px 18px rgba(0, 0, 0, 0.16);
+        0 8px 25px
+        rgba(0, 0, 0, 0.15);
+}
+
+.map-tooltip strong {
+
+    display:
+        block;
+
+    font-size:
+        13px;
+
+    margin-bottom:
+        2px;
 }
 
 
-.city-map-dot {
-    width: 10px;
-    height: 10px;
+/* =========================================
+   SELECTED STATE
+========================================= */
 
-    margin-right: 7px;
+.selected-state {
 
-    background: #244d3b;
+    position:
+        absolute;
 
-    border: 2px solid #ffffff;
+    left:
+        25px;
 
-    border-radius: 50%;
+    bottom:
+        25px;
 
-    box-shadow:
-        0 1px 4px rgba(0, 0, 0, 0.3);
+    right:
+        25px;
 
-    flex-shrink: 0;
+    padding:
+        12px 15px;
+
+    background:
+        #f5f7f4;
+
+    border:
+        1px solid #e1e5df;
+
+    border-radius:
+        8px;
+
+    color:
+        #70766f;
+
+    font-size:
+        13px;
+
+    text-align:
+        center;
+}
+
+.selected-state.active {
+
+    color:
+        #244d3b;
+
+    font-weight:
+        700;
 }
 
 
-.city-map-name {
-    color: #202420;
-
-    font-size: 12px;
-
-    font-weight: 800;
-
-    line-height: 1;
-}
-
-
-.city-map-count {
-    margin-left: 7px;
-
-    padding: 3px 5px;
-
-    background: #edf3ee;
-
-    color: #244d3b;
-
-    border-radius: 4px;
-
-    font-size: 10px;
-
-    font-weight: 800;
-
-    line-height: 1;
-}
-
-
-/* =====================================================
-   LARGE CITIES
-===================================================== */
-
-.city-map-label.large {
-    padding: 8px 12px 8px 8px;
-
-    border-radius: 9px;
-}
-
-
-.city-map-label.large .city-map-dot {
-    width: 13px;
-    height: 13px;
-}
-
-
-.city-map-label.large .city-map-name {
-    font-size: 13px;
-}
-
-
-.city-map-label.large .city-map-count {
-    font-size: 11px;
-}
-
-
-/* =====================================================
-   MAP HELP
-===================================================== */
-
-.map-help {
-    position: absolute;
-
-    left: 20px;
-    bottom: 20px;
-
-    z-index: 20;
-
-    padding: 10px 14px;
-
-    background: rgba(255, 255, 255, 0.95);
-
-    border: 1px solid #dfe4df;
-
-    border-radius: 7px;
-
-    color: #70766f;
-
-    font-size: 12px;
-
-    box-shadow:
-        0 3px 12px rgba(0, 0, 0, 0.08);
-}
-
-
-/* =====================================================
+/* =========================================
    POPULAR LOCATIONS
-===================================================== */
+========================================= */
 
 .popular-locations {
-    background: #ffffff;
 
-    border: 1px solid #e1e4de;
+    background:
+        #ffffff;
 
-    border-radius: 16px;
+    border:
+        1px solid #e1e4de;
 
-    padding: 28px;
+    border-radius:
+        16px;
 
-    min-height: 680px;
+    padding:
+        28px;
+
+    min-height:
+        650px;
 }
 
 .popular-heading h3 {
-    margin: 5px 0 25px;
 
-    font-size: 25px;
+    margin:
+        5px 0 25px;
+
+    font-size:
+        25px;
 }
 
+
+/* =========================================
+   POPULAR LIST
+========================================= */
+
 .popular-location-list {
-    display: flex;
 
-    flex-direction: column;
+    display:
+        flex;
 
-    gap: 4px;
+    flex-direction:
+        column;
+
+    gap:
+        8px;
 }
 
 .popular-location {
-    display: flex;
 
-    align-items: center;
-    justify-content: space-between;
+    display:
+        flex;
 
-    gap: 15px;
+    align-items:
+        center;
 
-    padding: 13px 10px;
+    justify-content:
+        space-between;
 
-    border-bottom: 1px solid #edf0ec;
+    gap:
+        15px;
 
-    text-decoration: none;
+    padding:
+        14px 12px;
 
-    color: #202420;
+    border-bottom:
+        1px solid #edf0ec;
+
+    text-decoration:
+        none;
+
+    color:
+        #202420;
 
     transition:
-        background 0.18s ease;
+        background 0.2s ease;
 }
 
 .popular-location:hover {
-    background: #f5f7f4;
 
-    border-radius: 7px;
+    background:
+        #f5f7f4;
+
+    border-radius:
+        7px;
 }
 
 .popular-location-info {
-    display: flex;
 
-    align-items: center;
+    display:
+        flex;
 
-    gap: 12px;
+    align-items:
+        center;
 
-    min-width: 0;
+    gap:
+        12px;
+
+    min-width:
+        0;
 }
 
 .popular-number {
-    width: 30px;
-    height: 30px;
 
-    flex-shrink: 0;
+    width:
+        30px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height:
+        30px;
 
-    background: #edf3ee;
+    flex-shrink:
+        0;
 
-    color: #244d3b;
+    display:
+        flex;
 
-    border-radius: 50%;
+    align-items:
+        center;
 
-    font-size: 11px;
-    font-weight: 800;
+    justify-content:
+        center;
+
+    background:
+        #edf3ee;
+
+    color:
+        #244d3b;
+
+    border-radius:
+        50%;
+
+    font-size:
+        11px;
+
+    font-weight:
+        800;
 }
 
 .popular-name {
-    font-size: 14px;
-    font-weight: 700;
 
-    white-space: nowrap;
+    font-size:
+        14px;
 
-    overflow: hidden;
+    font-weight:
+        700;
 
-    text-overflow: ellipsis;
+    white-space:
+        nowrap;
+
+    overflow:
+        hidden;
+
+    text-overflow:
+        ellipsis;
 }
 
 .popular-jobs {
-    flex-shrink: 0;
 
-    color: #70766f;
+    flex-shrink:
+        0;
 
-    font-size: 12px;
+    color:
+        #70766f;
+
+    font-size:
+        12px;
 }
 
 
-/* =====================================================
-   SPECIAL LOCATIONS
-===================================================== */
+/* =========================================
+   STATES
+========================================= */
 
-.special-locations {
-    margin-top: 25px;
+.states-section {
 
-    padding-top: 20px;
-
-    border-top: 1px solid #edf0ec;
+    background:
+        #f7f6f1;
 }
 
-.special-title {
-    margin-bottom: 10px;
+.state-list {
 
-    color: #70766f;
-
-    font-size: 11px;
-
-    font-weight: 800;
-
-    letter-spacing: 0.8px;
-
-    text-transform: uppercase;
-}
-
-.special-location {
-    display: inline-flex;
-
-    margin: 3px;
-
-    padding: 6px 9px;
-
-    background: #f1f4f1;
-
-    border-radius: 5px;
-
-    color: #244d3b;
-
-    text-decoration: none;
-
-    font-size: 11px;
-
-    font-weight: 700;
-}
-
-
-/* =====================================================
-   ALL LOCATIONS
-===================================================== */
-
-.locations-list-section {
-    background: #f7f6f1;
-}
-
-.location-list {
-    display: grid;
+    display:
+        grid;
 
     grid-template-columns:
         repeat(4, 1fr);
 
-    gap: 12px;
+    gap:
+        12px;
 }
 
-.location-card {
-    display: flex;
+.state-card {
 
-    align-items: center;
-    justify-content: space-between;
+    display:
+        flex;
 
-    gap: 15px;
+    align-items:
+        center;
 
-    padding: 18px;
+    justify-content:
+        space-between;
 
-    background: #ffffff;
+    gap:
+        15px;
 
-    border: 1px solid #e1e4de;
+    padding:
+        18px;
 
-    border-radius: 9px;
+    background:
+        #ffffff;
 
-    text-decoration: none;
+    border:
+        1px solid #e1e4de;
 
-    color: #202420;
+    border-radius:
+        9px;
+
+    text-decoration:
+        none;
+
+    color:
+        #202420;
 
     transition:
         transform 0.2s ease,
@@ -502,159 +633,186 @@
         box-shadow 0.2s ease;
 }
 
-.location-card:hover {
-    transform: translateY(-2px);
+.state-card:hover {
 
-    border-color: #244d3b;
+    transform:
+        translateY(-2px);
+
+    border-color:
+        #244d3b;
 
     box-shadow:
-        0 8px 20px rgba(0, 0, 0, 0.05);
+        0 8px 20px
+        rgba(0, 0, 0, 0.05);
 }
 
-.location-name {
-    font-size: 14px;
-    font-weight: 700;
+.state-name {
+
+    font-size:
+        14px;
+
+    font-weight:
+        700;
 }
 
-.location-jobs {
-    color: #70766f;
+.state-jobs {
 
-    font-size: 12px;
+    color:
+        #70766f;
 
-    white-space: nowrap;
+    font-size:
+        12px;
+
+    white-space:
+        nowrap;
 }
 
 .state-count {
-    color: #70766f;
 
-    font-size: 14px;
+    color:
+        #70766f;
+
+    font-size:
+        14px;
 }
 
 
-/* =====================================================
+/* =========================================
    LOADING
-===================================================== */
+========================================= */
 
+.map-loading,
 .locations-loading {
-    padding: 30px;
 
-    text-align: center;
+    width:
+        100%;
 
-    color: #70766f;
+    padding:
+        40px;
+
+    text-align:
+        center;
+
+    color:
+        #70766f;
 }
 
 
-/* =====================================================
+/* =========================================
    EMPTY
-===================================================== */
+========================================= */
 
 .no-locations {
-    display: none;
 
-    padding: 50px;
+    display:
+        none;
 
-    text-align: center;
+    padding:
+        50px;
 
-    background: #ffffff;
+    text-align:
+        center;
 
-    border: 1px solid #e1e4de;
+    background:
+        #ffffff;
 
-    border-radius: 10px;
+    border:
+        1px solid #e1e4de;
 
-    color: #70766f;
+    border-radius:
+        10px;
+
+    color:
+        #70766f;
 }
 
 
-/* =====================================================
-   LEAFLET CONTROLS
-===================================================== */
-
-.leaflet-control-zoom {
-    border: 0 !important;
-}
-
-.leaflet-control-zoom a {
-    width: 34px !important;
-    height: 34px !important;
-
-    line-height: 34px !important;
-
-    color: #244d3b !important;
-
-    background: #ffffff !important;
-
-    border: 1px solid #dfe4df !important;
-}
-
-.leaflet-control-attribution {
-    font-size: 9px;
-}
-
-
-/* =====================================================
+/* =========================================
    RESPONSIVE
-===================================================== */
+========================================= */
 
-@media (max-width: 1000px) {
+@media (
+    max-width: 1000px
+) {
 
     .map-layout {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+            1fr;
+
     }
 
     .popular-locations {
-        min-height: auto;
+
+        min-height:
+            auto;
+
     }
 
-    .location-list {
+    .state-list {
+
         grid-template-columns:
             repeat(3, 1fr);
+
     }
 
 }
 
 
-@media (max-width: 700px) {
+@media (
+    max-width: 700px
+) {
 
     .locations-hero {
-        padding: 50px 0 40px;
+
+        padding:
+            50px 0 40px;
+
     }
 
     .locations-hero h1 {
-        letter-spacing: -1px;
+
+        letter-spacing:
+            -1px;
+
     }
 
     .india-map-card {
-        height: 560px;
+
+        min-height:
+            500px;
+
+        padding:
+            20px;
+
     }
 
-    .location-list {
+    .india-map {
+
+        min-height:
+            400px;
+
+    }
+
+    .state-list {
+
         grid-template-columns:
             repeat(2, 1fr);
+
     }
 
 }
 
 
-@media (max-width: 450px) {
+@media (
+    max-width: 450px
+) {
 
-    .india-map-card {
-        height: 500px;
-    }
+    .state-list {
 
-    .location-list {
-        grid-template-columns: 1fr;
-    }
+        grid-template-columns:
+            1fr;
 
-    .city-map-label {
-        padding: 5px 7px 5px 5px;
-    }
-
-    .city-map-name {
-        font-size: 10px;
-    }
-
-    .city-map-count {
-        font-size: 9px;
     }
 
 }
