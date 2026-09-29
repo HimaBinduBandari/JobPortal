@@ -1,0 +1,700 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="robots"
+        content="noindex, nofollow"
+    >
+
+    <title>Dashboard - JobPortal Admin</title>
+
+
+    <!-- Admin CSS -->
+
+    <link
+        rel="stylesheet"
+        href="assets/css/admin.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     ADMIN LAYOUT
+===================================================== -->
+
+<div class="admin-layout">
+
+
+    <!-- =================================================
+         SIDEBAR
+    ================================================== -->
+
+    <aside class="admin-sidebar">
+
+
+        <!-- LOGO -->
+
+        <div class="admin-logo">
+
+            <a href="../">
+
+                Job<span>Portal</span>
+
+            </a>
+
+            <small>
+                ADMIN PANEL
+            </small>
+
+        </div>
+
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="admin-nav">
+
+
+            <div class="nav-section-title">
+                MAIN
+            </div>
+
+
+            <a
+                href="index.html"
+                class="admin-nav-link active"
+            >
+
+                <span class="nav-icon">
+                    ▦
+                </span>
+
+                Dashboard
+
+            </a>
+
+
+            <a
+                href="jobs.html"
+                class="admin-nav-link"
+            >
+
+                <span class="nav-icon">
+                    ≡
+                </span>
+
+                Jobs
+
+            </a>
+
+
+            <div class="nav-section-title">
+                MANAGE
+            </div>
+
+
+            <a
+                href="jobs.html"
+                class="admin-nav-link"
+            >
+
+                <span class="nav-icon">
+                    +
+                </span>
+
+                Add Job
+
+            </a>
+
+
+            <a
+                href="../companies.html"
+                class="admin-nav-link"
+                target="_blank"
+            >
+
+                <span class="nav-icon">
+                    ◉
+                </span>
+
+                Companies
+
+            </a>
+
+
+            <a
+                href="../categories.html"
+                class="admin-nav-link"
+                target="_blank"
+            >
+
+                <span class="nav-icon">
+                    ◇
+                </span>
+
+                Categories
+
+            </a>
+
+
+            <div class="nav-section-title">
+                WEBSITE
+            </div>
+
+
+            <a
+                href="../"
+                class="admin-nav-link"
+                target="_blank"
+            >
+
+                <span class="nav-icon">
+                    ↗
+                </span>
+
+                View Website
+
+            </a>
+
+
+        </nav>
+
+
+        <!-- SIDEBAR FOOTER -->
+
+        <div class="sidebar-footer">
+
+            <div>
+                JobPortal
+            </div>
+
+            <span>
+                Admin CMS
+            </span>
+
+        </div>
+
+
+    </aside>
+
+
+
+    <!-- =================================================
+         MAIN
+    ================================================== -->
+
+    <main class="admin-main">
+
+
+        <!-- =================================================
+             TOP BAR
+        ================================================== -->
+
+        <header class="admin-topbar">
+
+
+            <div>
+
+                <button
+                    type="button"
+                    class="mobile-menu-button"
+                    id="mobileMenuButton"
+                    aria-label="Open menu"
+                >
+                    ☰
+                </button>
+
+
+                <div class="topbar-title">
+
+                    <span>
+                        ADMINISTRATION
+                    </span>
+
+                    <h1>
+                        Dashboard
+                    </h1>
+
+                </div>
+
+            </div>
+
+
+            <a
+                href="jobs.html?action=add"
+                class="admin-primary-button"
+            >
+
+                <span>
+                    +
+                </span>
+
+                Add New Job
+
+            </a>
+
+
+        </header>
+
+
+
+        <!-- =================================================
+             PAGE CONTENT
+        ================================================== -->
+
+        <div class="admin-content">
+
+
+            <!-- PAGE INTRO -->
+
+            <div class="page-intro">
+
+                <div>
+
+                    <div class="page-label">
+                        OVERVIEW
+                    </div>
+
+                    <h2>
+                        JobPortal at a glance
+                    </h2>
+
+                    <p>
+                        Manage your jobs and keep your
+                        job listings up to date.
+                    </p>
+
+                </div>
+
+
+                <div
+                    id="lastUpdated"
+                    class="last-updated"
+                >
+                    Loading data...
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 STATISTICS
+            ================================================== -->
+
+            <section class="stats-grid">
+
+
+                <!-- TOTAL JOBS -->
+
+                <div class="stat-card">
+
+                    <div class="stat-card-top">
+
+                        <span class="stat-label">
+                            TOTAL JOBS
+                        </span>
+
+                        <span class="stat-icon">
+                            ≡
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        id="totalJobs"
+                        class="stat-value"
+                    >
+                        —
+                    </div>
+
+
+                    <div class="stat-description">
+                        All jobs in your database
+                    </div>
+
+                </div>
+
+
+
+                <!-- FEATURED -->
+
+                <div class="stat-card">
+
+                    <div class="stat-card-top">
+
+                        <span class="stat-label">
+                            FEATURED JOBS
+                        </span>
+
+                        <span class="stat-icon">
+                            ★
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        id="featuredJobs"
+                        class="stat-value"
+                    >
+                        —
+                    </div>
+
+
+                    <div class="stat-description">
+                        Currently highlighted jobs
+                    </div>
+
+                </div>
+
+
+
+                <!-- COMPANIES -->
+
+                <div class="stat-card">
+
+                    <div class="stat-card-top">
+
+                        <span class="stat-label">
+                            COMPANIES
+                        </span>
+
+                        <span class="stat-icon">
+                            ◉
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        id="totalCompanies"
+                        class="stat-value"
+                    >
+                        —
+                    </div>
+
+
+                    <div class="stat-description">
+                        Companies with job listings
+                    </div>
+
+                </div>
+
+
+
+                <!-- CATEGORIES -->
+
+                <div class="stat-card">
+
+                    <div class="stat-card-top">
+
+                        <span class="stat-label">
+                            CATEGORIES
+                        </span>
+
+                        <span class="stat-icon">
+                            ◇
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        id="totalCategories"
+                        class="stat-value"
+                    >
+                        —
+                    </div>
+
+
+                    <div class="stat-description">
+                        Active job categories
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 QUICK ACTIONS
+            ================================================== -->
+
+            <section class="dashboard-section">
+
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <div class="page-label">
+                            QUICK ACTIONS
+                        </div>
+
+                        <h2>
+                            Manage your portal
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="quick-actions">
+
+
+                    <a
+                        href="jobs.html?action=add"
+                        class="quick-action"
+                    >
+
+                        <div class="quick-action-icon">
+                            +
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Add New Job
+                            </strong>
+
+                            <span>
+                                Create a new job listing
+                            </span>
+
+                        </div>
+
+                        <div class="quick-arrow">
+                            →
+                        </div>
+
+                    </a>
+
+
+
+                    <a
+                        href="jobs.html"
+                        class="quick-action"
+                    >
+
+                        <div class="quick-action-icon">
+                            ≡
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Manage Jobs
+                            </strong>
+
+                            <span>
+                                Edit or delete existing jobs
+                            </span>
+
+                        </div>
+
+                        <div class="quick-arrow">
+                            →
+                        </div>
+
+                    </a>
+
+
+
+                    <a
+                        href="../"
+                        class="quick-action"
+                        target="_blank"
+                    >
+
+                        <div class="quick-action-icon">
+                            ↗
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                View Website
+                            </strong>
+
+                            <span>
+                                Open the public JobPortal
+                            </span>
+
+                        </div>
+
+                        <div class="quick-arrow">
+                            →
+                        </div>
+
+                    </a>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 RECENT JOBS
+            ================================================== -->
+
+            <section class="dashboard-section">
+
+
+                <div class="section-heading">
+
+
+                    <div>
+
+                        <div class="page-label">
+                            RECENTLY ADDED
+                        </div>
+
+                        <h2>
+                            Latest jobs
+                        </h2>
+
+                    </div>
+
+
+                    <a
+                        href="jobs.html"
+                        class="section-link"
+                    >
+                        View all →
+                    </a>
+
+
+                </div>
+
+
+
+                <div
+                    id="recentJobs"
+                    class="recent-jobs"
+                >
+
+                    <div class="dashboard-loading">
+                        Loading jobs...
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 DATA STATUS
+            ================================================== -->
+
+            <section class="dashboard-section">
+
+
+                <div class="data-status-card">
+
+
+                    <div class="data-status-icon">
+                        ✓
+                    </div>
+
+
+                    <div class="data-status-content">
+
+                        <strong>
+                            Job data connected
+                        </strong>
+
+                        <p>
+                            The dashboard is reading data
+                            from <code>data/jobs.json</code>.
+                        </p>
+
+                    </div>
+
+
+                    <div
+                        id="dataStatus"
+                        class="data-status-badge"
+                    >
+                        Checking...
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+        </div>
+
+
+        <!-- =================================================
+             FOOTER
+        ================================================== -->
+
+        <footer class="admin-footer">
+
+            <span>
+                © 2026 JobPortal Admin
+            </span>
+
+            <span>
+                Job Management System
+            </span>
+
+        </footer>
+
+
+    </main>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     MOBILE OVERLAY
+===================================================== -->
+
+<div
+    id="sidebarOverlay"
+    class="sidebar-overlay"
+></div>
+
+
+
+<!-- =====================================================
+     ADMIN JAVASCRIPT
+===================================================== -->
+
+<script src="assets/js/admin.js"></script>
+
+
+</body>
+
+</html>

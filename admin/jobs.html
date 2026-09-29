@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Jobs - JobPortal Admin</title>
+
+    <link rel="stylesheet" href="assets/css/admin.css">
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+    <!-- =====================================================
+         Sidebar
+         ===================================================== -->
+
+    <aside class="admin-sidebar">
+
+                <!-- LOGO -->
+
+        <div class="admin-logo">
+
+            <a href="../">
+
+                Job<span>Portal</span>
+
+            </a>
+
+            <small>
+                ADMIN PANEL
+            </small>
+
+        </div>
+
+
+        <nav class="admin-nav">
+
+            <a href="index.html">
+                <span class="nav-icon">📊</span>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="jobs.html" class="active">
+                <span class="nav-icon">💼</span>
+                <span>Jobs</span>
+            </a>
+
+            <a href="job-form.html">
+                <span class="nav-icon">➕</span>
+                <span>Add Job</span>
+            </a>
+
+            <a href="#">
+                <span class="nav-icon">🏢</span>
+                <span>Companies</span>
+            </a>
+
+            <a href="#">
+                <span class="nav-icon">📁</span>
+                <span>Categories</span>
+            </a>
+
+            <a
+                href="../index.html"
+                target="_blank"
+            >
+                <span class="nav-icon">🌐</span>
+                <span>View Website</span>
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-footer">
+
+            <p>JobPortal Admin</p>
+
+            <span>Local CMS</span>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         Sidebar Overlay
+         ===================================================== -->
+
+    <div class="sidebar-overlay"></div>
+
+
+    <!-- =====================================================
+         Main Content
+         ===================================================== -->
+
+    <main class="admin-main">
+
+
+        <!-- =================================================
+             Topbar
+             ================================================= -->
+
+        <header class="admin-topbar">
+
+            <div class="topbar-left">
+
+                <button
+                    type="button"
+                    class="mobile-menu-btn"
+                    aria-label="Open Menu"
+                >
+                    ☰
+                </button>
+
+                <div>
+
+                    <h1>Jobs</h1>
+
+                    <p>
+                        Manage your job listings
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="topbar-actions">
+
+                <a
+                    href="job-form.html"
+                    class="btn btn-primary"
+                >
+                    + Add New Job
+                </a>
+
+            </div>
+
+        </header>
+
+
+        <!-- =================================================
+             Page Content
+             ================================================= -->
+
+        <div class="admin-content">
+
+
+            <!-- =================================================
+                 Page Header
+                 ================================================= -->
+
+            <section class="page-header">
+
+                <div>
+
+                    <h2>
+                        Job Listings
+                    </h2>
+
+                    <p>
+                        View, search, edit and manage all jobs.
+                    </p>
+
+                </div>
+
+                <div class="jobs-count">
+
+                    <strong id="jobsCount">
+                        0
+                    </strong>
+
+                    <span>
+                        Jobs
+                    </span>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 Filters
+                 ================================================= -->
+
+            <section class="admin-card jobs-filter-card">
+
+                <div class="jobs-filter-grid">
+
+
+                    <!-- Search -->
+
+                    <div class="form-group">
+
+                        <label for="searchJobs">
+                            Search
+                        </label>
+
+                        <input
+                            type="text"
+                            id="searchJobs"
+                            class="form-control"
+                            placeholder="Search job title, company..."
+                        >
+
+                    </div>
+
+
+                    <!-- Location -->
+
+                    <div class="form-group">
+
+                        <label for="filterLocation">
+                            Location
+                        </label>
+
+                        <select
+                            id="filterLocation"
+                            class="form-control"
+                        >
+
+                            <option value="">
+                                All Locations
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Category -->
+
+                    <div class="form-group">
+
+                        <label for="filterCategory">
+                            Category
+                        </label>
+
+                        <select
+                            id="filterCategory"
+                            class="form-control"
+                        >
+
+                            <option value="">
+                                All Categories
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Company -->
+
+                    <div class="form-group">
+
+                        <label for="filterCompany">
+                            Company
+                        </label>
+
+                        <select
+                            id="filterCompany"
+                            class="form-control"
+                        >
+
+                            <option value="">
+                                All Companies
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Job Type -->
+
+                    <div class="form-group">
+
+                        <label for="filterJobType">
+                            Job Type
+                        </label>
+
+                        <select
+                            id="filterJobType"
+                            class="form-control"
+                        >
+
+                            <option value="">
+                                All Job Types
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Work Mode -->
+
+                    <div class="form-group">
+
+                        <label for="filterWorkMode">
+                            Work Mode
+                        </label>
+
+                        <select
+                            id="filterWorkMode"
+                            class="form-control"
+                        >
+
+                            <option value="">
+                                All Work Modes
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="filter-actions">
+
+                    <button
+                        type="button"
+                        id="clearFilters"
+                        class="btn btn-secondary"
+                    >
+                        Clear Filters
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 Jobs Table
+                 ================================================= -->
+
+            <section class="admin-card jobs-table-card">
+
+
+                <div class="table-header">
+
+                    <div>
+
+                        <h3>
+                            All Jobs
+                        </h3>
+
+                        <p id="tableSummary">
+                            Loading jobs...
+                        </p>
+
+                    </div>
+
+
+                    <div class="table-actions">
+
+                        <select
+                            id="sortJobs"
+                            class="form-control sort-select"
+                        >
+
+                            <option value="newest">
+                                Newest First
+                            </option>
+
+                            <option value="oldest">
+                                Oldest First
+                            </option>
+
+                            <option value="title">
+                                Job Title
+                            </option>
+
+                            <option value="company">
+                                Company
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Loading -->
+
+                <div
+                    id="jobsLoading"
+                    class="table-loading"
+                >
+
+                    <div class="loading-spinner"></div>
+
+                    <p>
+                        Loading jobs...
+                    </p>
+
+                </div>
+
+
+                <!-- Table -->
+
+                <div
+                    id="jobsTableWrapper"
+                    class="table-responsive"
+                    style="display:none;"
+                >
+
+                    <table class="admin-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Job
+                                </th>
+
+                                <th>
+                                    Company
+                                </th>
+
+                                <th>
+                                    Location
+                                </th>
+
+                                <th>
+                                    Type
+                                </th>
+
+                                <th>
+                                    Posted
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Actions
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="jobsTableBody">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <!-- Empty State -->
+
+                <div
+                    id="jobsEmpty"
+                    class="empty-state"
+                    style="display:none;"
+                >
+
+                    <div class="empty-icon">
+                        🔍
+                    </div>
+
+                    <h3>
+                        No jobs found
+                    </h3>
+
+                    <p>
+                        Try changing your search or filters.
+                    </p>
+
+                    <button
+                        type="button"
+                        id="emptyClearFilters"
+                        class="btn btn-secondary"
+                    >
+                        Clear Filters
+                    </button>
+
+                </div>
+
+
+                <!-- Error State -->
+
+                <div
+                    id="jobsError"
+                    class="empty-state"
+                    style="display:none;"
+                >
+
+                    <div class="empty-icon">
+                        ⚠️
+                    </div>
+
+                    <h3>
+                        Unable to load jobs
+                    </h3>
+
+                    <p>
+                        Please check your jobs.json file.
+                    </p>
+
+                    <button
+                        type="button"
+                        id="retryJobs"
+                        class="btn btn-primary"
+                    >
+                        Try Again
+                    </button>
+
+                </div>
+
+
+            </section>
+
+
+        </div>
+
+
+        <!-- =================================================
+             Footer
+             ================================================= -->
+
+        <footer class="admin-footer">
+
+            <p>
+                © 2026 JobPortal Admin
+            </p>
+
+        </footer>
+
+
+    </main>
+
+</div>
+
+
+<!-- =========================================================
+     Delete Confirmation Modal
+     ========================================================= -->
+
+<div
+    id="deleteModal"
+    class="modal-overlay"
+    style="display:none;"
+>
+
+    <div class="modal">
+
+        <div class="modal-icon">
+            ⚠️
+        </div>
+
+        <h2>
+            Delete Job?
+        </h2>
+
+        <p id="deleteMessage">
+            Are you sure you want to delete this job?
+        </p>
+
+        <div class="modal-actions">
+
+            <button
+                type="button"
+                id="cancelDelete"
+                class="btn btn-secondary"
+            >
+                Cancel
+            </button>
+
+            <button
+                type="button"
+                id="confirmDelete"
+                class="btn btn-danger"
+            >
+                Delete Job
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     JavaScript
+     ========================================================= -->
+
+<script src="assets/js/jobs.js"></script>
+
+</body>
+</html>
