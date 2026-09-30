@@ -64,5 +64,27 @@
     "posted_date": "2026-09-25",
     "expiry_date": "",
     "featured": false
+  },
+  {
+    "job_id": "4",
+    "job_title": "Analyst-Data Analytics",
+    "job_description": "GC&P Analytics, Insights and Reporting Team leads reporting and analysis on the customer complaints data with the objective of converting them into meaningful insights & strategies for our business partners, enabling process improvements across businesses and enhanced customer experience as well as providing accurate and timely updates on complaints to the regulators. The team also closely work with Operations team to improve operational efficiencies.",
+    "category": "Risk Management",
+    "sub_category": "Data Analytics",
+    "job_requirements": "Experience with Global Complaints and Privacy data \n\nExperience working with, analyzing, and summarizing large data sets\n\nExperience in Data Visualization Tools\n\nExperience with reviewing output of Gen AI tools or validating model output\n\nProficiency in reading additional languages (Spanish or French preferred)\n\nDegree or certification in a quantitative field",
+    "edu_requirements": "",
+    "location": "Gurugram",
+    "work_mode": "Hybrid",
+    "job_type": "Full Time",
+    "experience": "1 year",
+    "salary": "Not Disclosed",
+    "skills": "SQL, Google BigQuery, Data Analysis, Large Dataset Analysis, Data Visualization, Root Cause Analysis, Reporting, Customer Complaints Analytics, Regulatory Reporting, GenAI Model Validation, Communication, Relationship Management",
+    "apply_url": "https://careers.americanexpress.com/en/sites/CX_1/job/26013650/",
+    "company_name": "American Express",
+    "company_description": "American Express offers world-class Charge and Credit Cards, Gift Cards, Rewards, Travel, Personal Savings, Business Services, Insurance and more.",
+    "company_logo": "https://www.aexp-static.com/cdaas/one/statics/axp-static-assets/1.8.0/package/dist/img/logos/dls-logo-bluebox-solid.svg",
+    "posted_date": "2026-09-30",
+    "expiry_date": "2026-10-09",
+    "featured": false
   }
 ]
